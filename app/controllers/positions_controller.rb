@@ -15,6 +15,12 @@ class PositionsController < ApplicationController
     end
   end
 
+  def board
+    @board = true
+    @players = NflPlayer.all.order(projected_points: :desc)
+    @rounds = @players.each_slice(10)
+  end
+
   private
 
     def set_positions

@@ -1,0 +1,37 @@
+<div class="board">
+	<h1>Board</h1>
+	<table class="table table-bordered">
+		<thead>
+			<tr>
+				<th colspan="2"></th>
+				<% (1..10).each do |n| %>
+					<th><%= n %></th>
+				<% end %>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody>
+			<% @rounds.each_with_index do |round, index| %>
+				<% if index % 2 == 1 %>
+					<% round = round.reverse %>
+					<% symbol = '❮' %>
+					<% klass = 'odd' %>
+				<% else %>
+					<% symbol = '❯' %>
+					<% klass = 'even' %>
+				<% end %>
+				<tr class=<%= klass %>>
+					<td><%= index %></td>
+					<td><%= symbol %></td>
+					<% round.each do |player| %>
+						<td class="<%= player.position.downcase %> player"><%= player.name %></td>
+					<% end %>
+					<% if round.count < 10 %>
+						<td colspan="<%= 10 - round.count %>"></td>
+					<% end %>
+					<td><%= symbol %></td>
+				</tr>
+			<% end %>
+		</tbody>
+	</table>
+</div>

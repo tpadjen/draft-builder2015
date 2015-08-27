@@ -1,3 +1,31 @@
 // Place all the styles related to the Positions controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.board {
+	tr.even {
+		background-color: #fff;
+	}
+
+	tr.odd, th {
+		background-color: #dcdcdc;
+	}
+
+	td, th {
+		text-align: center;
+		vertical-align: middle !important;
+	}
+
+	table tr, table td, table, table th {
+		border-color: #333 !important;
+	}
+
+	table th {
+		border-bottom: 0px solid black !important;
+	}
+
+	td.player:hover {
+		background-color: #fafafa;
+		cursor: pointer;
+	}	
+}
