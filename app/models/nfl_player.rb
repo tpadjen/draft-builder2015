@@ -13,4 +13,8 @@ class NflPlayer < ActiveRecord::Base
   	@@valid_positions.include?(pos.upcase)
   end
 
+  def self.valid_positions
+  	@@valid_positions
+  end
+
 end

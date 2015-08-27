@@ -1,0 +1,6 @@
+<h1><%= @position %></h1>
+<ul>
+	<% @players.each do |player| %>
+		<li class="<%= player.position.downcase %>"><%= player.name %> - <%= player.projected_points %></li>
+	<% end %>
+</ul>
