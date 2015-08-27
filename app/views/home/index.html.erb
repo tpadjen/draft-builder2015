@@ -1,2 +1,6 @@
-<h2>Hello world</h2>
-<p>The time is now <%= Time.now %></p>
+<h1>All Players</h1>
+<ul>
+	<% @players.each do |player| %>
+		<li class="<%= player.position.downcase %>"><%= player.name %> - <%= player.projected_points %></li>
+	<% end %>
+</ul>

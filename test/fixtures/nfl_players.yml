@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  first_name: MyString
+  last_name: MyString
+  rank: 1
+  position_rank: 1
+  projected_points: 9.99
+  nfl_team_id: 
+
+two:
+  first_name: MyString
+  last_name: MyString
+  rank: 1
+  position_rank: 1
+  projected_points: 9.99
+  nfl_team_id: 

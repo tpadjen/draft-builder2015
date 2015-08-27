@@ -11,10 +11,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150827163135) do
+ActiveRecord::Schema.define(version: 20150827171048) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "nfl_players", force: :cascade do |t|
+    t.string   "first_name"
+    t.string   "last_name"
+    t.integer  "rank"
+    t.integer  "position_rank"
+    t.decimal  "projected_points"
+    t.integer  "nfl_team_id"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+    t.string   "position"
+  end
+
+  add_index "nfl_players", ["nfl_team_id"], name: "index_nfl_players_on_nfl_team_id", using: :btree
 
   create_table "nfl_teams", force: :cascade do |t|
     t.string   "nickname"
@@ -24,4 +38,5 @@ ActiveRecord::Schema.define(version: 20150827163135) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "nfl_players", "nfl_teams"
 end
