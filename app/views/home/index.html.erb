@@ -1,6 +1,2 @@
-<h1>Positions</h1>
-<div class="btn-group" role="group">
-  <% @positions.each do |position| %>
-		<%= link_to position, "pos/#{position}", {class: 'btn btn-default'} %>
-	<% end %>
-</div>
+<h1>Home</h1>
+<%= render 'positions/index' %>

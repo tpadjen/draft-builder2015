@@ -8,6 +8,23 @@
 </head>
 <body>
 
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="/">HYMM 2015</a>
+    </div>
+    <div class="btn-group" role="group">
+      <% @positions.each do |position| %>
+      	<% if @position == position %>
+      		<%= link_to position, "/#{position}", {class: "btn btn-default navbar-btn active"} %>
+      	<% else %>
+      		<%= link_to position, "/#{position}", {class: "btn btn-default navbar-btn"} %>
+      	<% end %>
+    	<% end %>
+    </div>
+  </div>
+</nav>
+
 <div class="container">
 	<%= yield %>
 </div>
