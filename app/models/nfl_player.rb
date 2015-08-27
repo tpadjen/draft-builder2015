@@ -1,20 +1,16 @@
 class NflPlayer < ActiveRecord::Base
   belongs_to :nfl_team
 
-  @@valid_positions = ['QB', 'WR', 'RB', 'TE', 'DEF', 'K']
+  VALID_POSITIONS = ['QB', 'WR', 'RB', 'TE', 'DEF', 'K']
 
-  validates :position, inclusion: {in: @@valid_positions}
+  validates :position, inclusion: {in: VALID_POSITIONS}
 
   def name
   	"#{first_name} #{last_name}".strip
   end
 
   def self.position_valid?(pos)
-  	@@valid_positions.include?(pos.upcase)
-  end
-
-  def self.valid_positions
-  	@@valid_positions
+  	VALID_POSITIONS.include?(pos.upcase)
   end
 
 end

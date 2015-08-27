@@ -1,7 +1,7 @@
 class HomeController < ApplicationController
 
 	def index
-		@positions = NflPlayer.valid_positions.unshift('All')
+		@positions = NflPlayer::VALID_POSITIONS.clone.unshift('All')
 	end
 
 end
