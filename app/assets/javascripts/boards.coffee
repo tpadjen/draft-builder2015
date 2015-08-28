@@ -20,7 +20,9 @@ updateSideBar = (currentPick) ->
 
 initialScroll = () ->
   button = $('.sidebar .draft-order .current')
-  button.prev('button').prev('button').prev('button').prev('button').prev('button').prev('button').get(0).scrollIntoView()
+  b = button.prev('button').prev('button').prev('button').prev('button').prev('button').prev('button').get(0)
+  if b
+    b.scrollIntoView()
   return
 
 

@@ -43,7 +43,11 @@
         </ul>
       </li>
     </ul>
-    <p class="navbar-text navbar-right current-pick">Current Pick: <span class="decimal"><%= @current_pick.to_d %></span> <span class="owner"><%= @current_pick.fantasy_team.owner %></span></p>
+    <% if @current_pick %>
+      <p class="navbar-text navbar-right current-pick">Current Pick: <span class="decimal"><%= @current_pick.to_d %></span> <span class="owner"><%= @current_pick.fantasy_team.owner %></span></p>
+    <% else %>
+      <p class="navbar-text navbar-right current-pick">Draft Finished!</p>
+    <% end %>
     </ul>
   </div>
 </nav>
