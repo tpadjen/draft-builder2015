@@ -1,10 +1,43 @@
-<h1><%= @position %></h1>
-<div class="list-group player-list">
-	<% @players.each do |player| %>
-		<% if player.picked? %>
-			<button type="button" class="list-group-item disabled selected"><%= player.name %><span class="badge"><%= player.fantasy_team.owner %></span></button>
-		<% else %>
-			<button type="button" class="list-group-item unselected <%= player.position.downcase %>"><%= player.name %><span class="badge"><%= player.projected_points %></span></button>
-		<% end %>
-	<% end %>
+<div class="positions">
+	<div class="col-md-8 col-md-offset-2">
+		<h1><%= @position %></h1>
+		<table class="table table-bordered">
+			<thead>
+				<tr>
+					<th>Rank</th>
+					<th class="<%= "highlighted" if @adp %>"><a href="?rank=adp">ADP Pick</a></th>
+					<th>Player</th>
+					<th>NFL Team</th>
+					<!-- <th>ADP</th> -->
+					<th class="<%= "highlighted" if @points %>"><a href=".">Projected Points</a></th>
+					<th>Owner</th>
+				</tr>
+			</thead>
+			<tbody>
+				<% @players.each_with_index do |player, index| %>
+					<% if player.picked? %>
+						<tr class="selected">
+							<td><%= player.position_rank %></td>
+							<td><%= player.adp_round %></td>
+							<td><%= player.name %></td>
+							<td><%= player.nfl_team.shortname %></td>
+							<!-- <td><%= player.adp_ffc %></td> -->
+							<td><%= player.projected_points %></td>
+							<td><%= player.fantasy_team.owner %></td>
+						</tr>
+					<% else %>
+						<tr class="unselected <%= player.position.downcase %>">
+							<td><%= player.position_rank %></td>
+							<td><%= player.adp_round %></td>
+							<td><%= player.name %></td>
+							<td><%= player.nfl_team.shortname %></td>
+							<!-- <td><%= player.adp_ffc %></td> -->
+							<td><%= player.projected_points %></td>
+							<td></td>
+						</tr>
+					<% end %>	
+				<% end %>
+			</tbody>
+		</table>	
+	</div>
 </div>

@@ -67,17 +67,19 @@ players.each do |player|
 			"nfl_teams.shortname" => player[4]).first	
 	else
 		first, last = [names[0], names.last(names.count-1).join(' ')] 
-		pl = NflPlayer.where(last_name: last).joins(:nfl_team).where(
+		pl = NflPlayer.where(last_name: last, position: player[3]).joins(:nfl_team).where(
 			"nfl_teams.shortname" => player[4]).first
 	end
 
 	if !pl
 		p "#{player[2]} not found!!!"
 	else
-		pl.update(adp_ffc: player[1].to_d)
+		puts "Reading ADP for #{player[2]}: #{player[1].to_f} | #{player[0].to_f}"
+		pl.update(adp_ffc: player[1].to_f, adp_round: player[0].to_f)
+		puts "Now it is #{pl.adp_ffc} | #{pl.adp_round}"
 	end
 end
 
 NflPlayer.where(adp_ffc: nil).each do |player|
-	player.update(adp_ffc: 170)
+	player.update(adp_ffc: 170, adp_round: 20.0)
 end
