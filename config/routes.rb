@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   # get 'pos' => 'positions#index'
   get '/board' => 'positions#board'
+  get 'team/:owner' => 'fantasy_teams#show'
   get '/:position' => 'positions#index'
 
   # The priority is based upon order of creation: first created -> highest priority.

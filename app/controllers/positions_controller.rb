@@ -1,5 +1,4 @@
 class PositionsController < ApplicationController
-  before_action :set_positions
 
   def index
     if params[:position] && !NflPlayer.position_valid?(params[:position])
@@ -20,11 +19,5 @@ class PositionsController < ApplicationController
     @players = NflPlayer.all.order(projected_points: :desc)
     @rounds = @players.each_slice(10)
   end
-
-  private
-
-    def set_positions
-      @positions = NflPlayer::VALID_POSITIONS.clone.unshift('All')
-    end
 
 end

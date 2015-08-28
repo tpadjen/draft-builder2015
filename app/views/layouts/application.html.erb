@@ -19,17 +19,27 @@
       <% else %>
         <a href="/board" class="btn btn-default navbar-btn">Board</a>  
       <% end %>
-      
     </div>
-    <div class="btn-group" role="group">
-      <% @positions.each do |position| %>
-      	<% if @position == position %>
-      		<%= link_to position, "/#{position}", {class: "btn btn-default navbar-btn active"} %>
-      	<% else %>
-      		<%= link_to position, "/#{position}", {class: "btn btn-default navbar-btn"} %>
-      	<% end %>
-    	<% end %>
-    </div>
+    <ul class="nav navbar-nav">
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Positions <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <% @positions.each do |position| %>
+            <li><%= link_to position, "/#{position}" %></li>
+          <% end %>
+        </ul>
+      </li>
+    </ul>
+    <ul class="nav navbar-nav">
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Fantasy Teams <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <% @fantasy_teams.each do |team| %>
+            <li><%= link_to team.owner, "/team/#{team.owner.downcase}" %></li>
+          <% end %>
+        </ul>
+      </li>
+    </ul>
     <p class="navbar-text navbar-right current-pick">Current Pick: <%= @current_pick.to_d %> <%= @current_pick.fantasy_team.owner %></p>
     </ul>
   </div>
