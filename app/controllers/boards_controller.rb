@@ -1,8 +1,8 @@
 class BoardsController < ApplicationController
 
   def draft
-  	@players = DraftPick.selected.map {|pick| pick.nfl_player }
-  	@rounds = @players.each_slice(10)
+  	@picks = DraftPick.all.order(:number)
+  	@rounds = @picks.each_slice(10)
   end
 
   def adp

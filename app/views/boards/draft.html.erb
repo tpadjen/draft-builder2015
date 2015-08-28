@@ -30,8 +30,12 @@
 				<tr class=<%= klass %>>
 					<td><%= index + 1 %></td>
 					<td class="arrow"><%= symbol %></td>
-					<% round.each do |player| %>
-						<td class="<%= player.position.downcase %> player"><%= player.name %></td>	
+					<% round.each do |pick| %>
+						<% if pick.nfl_player %>
+							<td class="<%= pick.nfl_player.position.downcase %> player"><%= pick.nfl_player.name %></td>
+						<% else %>
+							<td></td>
+						<% end %>
 					<% end %>
 					<% if round.count < 10 %>
 						<% if index >= 16 %>

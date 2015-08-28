@@ -43,6 +43,10 @@ body { padding-top: 54px; }
 		font-size: 1.2em;
 
 		.pick-number {
+			margin-right: 24px;
+		}
+
+		&.ten .pick-number {
 			margin-right: 15px;
 		}
 	}
