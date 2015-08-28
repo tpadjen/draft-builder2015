@@ -1,6 +1,10 @@
 <h1><%= @position %></h1>
-<ul>
+<div class="list-group player-list">
 	<% @players.each do |player| %>
-		<li class="<%= player.position.downcase %>"><%= player.name %> - <%= player.projected_points %></li>
+		<% if player.picked? %>
+			<button type="button" class="list-group-item disabled selected"><%= player.name %><span class="badge"><%= player.fantasy_team.owner %></span></button>
+		<% else %>
+			<button type="button" class="list-group-item unselected <%= player.position.downcase %>"><%= player.name %><span class="badge"><%= player.projected_points %></span></button>
+		<% end %>
 	<% end %>
-</ul>
+</div>

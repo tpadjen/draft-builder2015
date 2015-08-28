@@ -24,7 +24,11 @@
 					<td><%= index %></td>
 					<td><%= symbol %></td>
 					<% round.each do |player| %>
-						<td class="<%= player.position.downcase %> player"><%= player.name %></td>
+						<% if player.picked? %>
+							<td class="<%= player.position.downcase %> player picked"><%= player.name %></td>
+						<% else %>
+							<td class="<%= player.position.downcase %> player"><%= player.name %></td>	
+						<% end %>
 					<% end %>
 					<% if round.count < 10 %>
 						<td colspan="<%= 10 - round.count %>"></td>

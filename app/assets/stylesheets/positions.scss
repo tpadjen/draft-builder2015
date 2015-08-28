@@ -27,5 +27,26 @@
 	td.player:hover {
 		background-color: #fafafa;
 		cursor: pointer;
-	}	
+	}
+
+	td.player.picked {
+		background-color: #333;
+		color: #ccc;
+	}
+
+	td.player.picked:hover {
+		cursor: default;
+	}
+}
+
+.player-list {
+	text-align: center;
+	.list-group-item {
+		min-width: 200px;
+
+		&:hover {
+			background-color: #fff;
+			color: black;
+		}
+	}
 }
