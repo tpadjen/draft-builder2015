@@ -6,6 +6,10 @@ class DraftPick < ActiveRecord::Base
   	where(nfl_player: nil)
   end
 
+  def self.selected
+  	where.not(nfl_player: nil)
+  end
+
   def selected?
   	nfl_player != nil
   end

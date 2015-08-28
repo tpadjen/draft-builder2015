@@ -1,3 +1,18 @@
 // Place all the styles related to the FantasyTeams controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.fantasy-teams {
+	h2 {
+		text-align: center;
+	}
+	.picks-table {
+		// padding-left: 20px;
+		// width: inherit;
+		text-align: center;
+
+		th {
+			text-align: center;
+		}
+	}
+}
