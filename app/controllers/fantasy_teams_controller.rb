@@ -4,10 +4,10 @@ class FantasyTeamsController < ApplicationController
 		if !params[:owner]
 			redirect_to(:back)
 		else
-			@fantasy_team = FantasyTeam.where('lower(owner) = ?', params[:owner].downcase).includes(
-				:nfl_players, :draft_picks).first
+			@fantasy_team = FantasyTeam.where(
+				'lower(owner) = ?', params[:owner].downcase).first
 			if @fantasy_team
-				@picks = @fantasy_team.draft_picks.order(:number)
+				@picks = @fantasy_team.draft_picks.includes(:nfl_player).order(:number)
 				@selected = @picks.selected
 				build_roster
 			else
