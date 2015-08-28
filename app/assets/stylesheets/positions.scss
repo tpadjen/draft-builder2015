@@ -48,5 +48,14 @@
 			background-color: #fff;
 			color: black;
 		}
+
+		&.selected {
+			background-color: #333;
+			color: #ccc;
+
+			&:hover {
+				cursor: default;
+			}
+		}
 	}
 }
