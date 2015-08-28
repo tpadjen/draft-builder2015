@@ -35,6 +35,10 @@ body { padding-top: 54px; }
 	height: calc(100% - 54px);
 	overflow: scroll;
 	position: fixed;
+
+	.current {
+		background-color: yellow;
+	}
 }
 
 .content {
