@@ -18,6 +18,11 @@
 @import "home.scss";
 @import "positions.scss";
 
+.navbar .current-pick {
+	font-size: 1.2em;
+	margin-right: 20px;
+}
+
 .sidebar {
 	// text-align: center;
 	background-color: #aaa;
@@ -27,7 +32,7 @@
 
 .draft-order {
 	margin-bottom: 0;
-	
+
 	.list-group-item {
 		min-width: 200px;
 		width: 100%;

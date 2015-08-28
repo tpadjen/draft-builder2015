@@ -9,5 +9,6 @@ class ApplicationController < ActionController::Base
 
   	def set_draft_picks
   		@draft_picks = DraftPick.all.order(:number)
+  		@current_pick = DraftPick.unselected.first
   	end
 end

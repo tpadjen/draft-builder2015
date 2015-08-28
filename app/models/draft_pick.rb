@@ -2,6 +2,10 @@ class DraftPick < ActiveRecord::Base
   belongs_to :nfl_player
   belongs_to :fantasy_team
 
+  def self.unselected
+  	where(nfl_player: nil)
+  end
+
   def selected?
   	nfl_player != nil
   end
