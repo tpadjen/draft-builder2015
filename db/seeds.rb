@@ -10,11 +10,13 @@ require 'csv'
 
 nfl_teams = CSV.read('db/nfl_teams.csv')
 
+puts "\nLoading NFL Teams"
 nfl_teams.each do |team|
 	t = NflTeam.find_or_create_by(city: team[0], nickname: team[1], shortname: team[2])
-	puts "Loading the #{t.nickname}"
+	# puts "Loading the #{t.nickname}"
 end
 
+puts "\nLoading NFL Players"
 ['QB', 'RB', 'WR', 'TE', 'DEF', 'K'].each do |position|
 	players = CSV.read("db/players/#{position.downcase}.csv")
 	players.each do |player|
@@ -23,7 +25,6 @@ end
 			last_name: player[2], first_name: player[3], position: position,
 			nfl_team: NflTeam.where(shortname: player[4]).first
 		)
-		puts "Loading #{pl.name} - #{pl.position_rank} - #{pl.projected_points}"
 	end
 end
 
@@ -33,10 +34,12 @@ owners.each_with_index do |owner, i|
 	fantasy_team = FantasyTeam.find_or_create_by(owner: owner, pick_number: i + 1)
 	puts "\nLoading #{owner}'s draft: "
 	picks = []
+	fantasy_team.draft_picks.delete_all
+
 	(1..16).each do |round|
 		offset = round % 2 == 1 ? i + 1 : 10 - i
 		pick = (round-1)*10 + offset
-		fantasy_team.draft_picks.create(number: pick)
+		fantasy_team.draft_picks.create(number: pick)	
 	end
 
 	puts "He gets picks #{fantasy_team.draft_picks.map(&:number)}\n"
@@ -44,7 +47,6 @@ end
 
 # keepers
 puts
-
 def keep(name, owner)
 	first, last = name.split(' ')
 	player = NflPlayer.where(first_name: first, last_name: last).first
@@ -56,9 +58,7 @@ keep('Jeremy Hill', 'Rodney')
 keep('Mark Ingram', 'Lucas')
 
 # load adp data
-puts
-puts "Loading ADP data from FFC"
-
+puts "\nLoading ADP data from FFC\n\n"
 players = CSV.read('db/adp/ffc.csv')
 players.each do |player|
 	names = player[2].split(' ')
@@ -74,9 +74,7 @@ players.each do |player|
 	if !pl
 		p "#{player[2]} not found!!!"
 	else
-		puts "Reading ADP for #{player[2]}: #{player[1].to_f} | #{player[0].to_f}"
 		pl.update(adp_ffc: player[1].to_f, adp_round: player[0].to_f)
-		puts "Now it is #{pl.adp_ffc} | #{pl.adp_round}"
 	end
 end
 
