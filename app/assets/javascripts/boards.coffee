@@ -13,6 +13,8 @@ updateSideBar = (currentPick) ->
   button = list.find("[data-pick-decimal='" + currentPick.decimal + "']")
   button.html("<span class=\"pick-number\">" + currentPick.decimal + "</span>" + currentPick.player + "<span class=\"owner\">" + currentPick.owner + "</span>")
   button.toggleClass('unselected').toggleClass('selected').toggleClass('disabled')
+  # $('.sidebar').scrollTop
+  button.prev('button').prev('button').prev('button').prev('button').prev('button').prev('button').get(0).scrollIntoView()
   return
 
 
