@@ -11,10 +11,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150827171048) do
+ActiveRecord::Schema.define(version: 20150828040414) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "draft_picks", force: :cascade do |t|
+    t.integer  "number"
+    t.integer  "nfl_player_id"
+    t.integer  "fantasy_team_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  add_index "draft_picks", ["fantasy_team_id"], name: "index_draft_picks_on_fantasy_team_id", using: :btree
+  add_index "draft_picks", ["nfl_player_id"], name: "index_draft_picks_on_nfl_player_id", using: :btree
+
+  create_table "fantasy_teams", force: :cascade do |t|
+    t.string   "owner"
+    t.string   "pick_number"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
 
   create_table "nfl_players", force: :cascade do |t|
     t.string   "first_name"
@@ -38,5 +56,7 @@ ActiveRecord::Schema.define(version: 20150827171048) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "draft_picks", "fantasy_teams"
+  add_foreign_key "draft_picks", "nfl_players"
   add_foreign_key "nfl_players", "nfl_teams"
 end

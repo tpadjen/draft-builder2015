@@ -26,3 +26,18 @@ end
 		puts "Loading #{pl.name} - #{pl.position_rank} - #{pl.projected_points}"
 	end
 end
+
+owners = ['Ian', 'Brandt', 'Lamb', 'Goldson', 'Carlson', 
+	'Chuck', 'Kinder', 'Lucas', 'Rodney', 'TBQ']
+owners.each_with_index do |owner, i|
+	fantasy_team = FantasyTeam.find_or_create_by(owner: owner, pick_number: i + 1)
+	puts "\nLoading #{owner}'s draft: "
+	picks = []
+	(1..16).each do |round|
+		offset = round % 2 == 1 ? i + 1 : 10 - i
+		pick = (round-1)*10 + offset
+		fantasy_team.draft_picks.create(number: pick)
+	end
+
+	puts "He gets picks #{fantasy_team.draft_picks.map(&:number)}\n"
+end

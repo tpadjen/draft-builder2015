@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  number: MyString
+  nfl_player_id: 
+  fantasy_team_id: 
+
+two:
+  number: MyString
+  nfl_player_id: 
+  fantasy_team_id: 
