@@ -16,7 +16,19 @@ class PositionsController < ApplicationController
 
   def board
     @board = true
-    @players = NflPlayer.all.order(projected_points: :desc)
+    if params[:style]
+      if ['adp', 'points'].include?(params[:style].downcase)
+        if params[:style].downcase == 'points'
+          @players = NflPlayer.all.order(projected_points: :desc)
+        elsif params[:style].downcase == 'adp'
+          @players = NflPlayer.all.order(:adp)
+        end
+      else
+        redirect_to '/board'
+      end
+    else # projected points
+      @players = DraftPick.selected.map {|pick| pick.nfl_player }
+    end
     @rounds = @players.each_slice(10)
   end
 

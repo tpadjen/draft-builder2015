@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   # get 'pos' => 'positions#index'
-  get '/board' => 'positions#board'
+  get '/board(/:style)' => 'positions#board'
   get 'team/:owner' => 'fantasy_teams#show'
   get '/:position' => 'positions#index'
 
