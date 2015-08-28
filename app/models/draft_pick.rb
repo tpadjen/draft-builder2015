@@ -3,11 +3,11 @@ class DraftPick < ActiveRecord::Base
   belongs_to :fantasy_team
 
   def self.unselected
-  	where(nfl_player: nil)
+  	where(nfl_player: nil).order(:number)
   end
 
   def self.selected
-  	where.not(nfl_player: nil)
+  	where.not(nfl_player: nil).order(:number)
   end
 
   def selected?
