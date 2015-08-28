@@ -33,9 +33,22 @@
   </div>
 </nav>
 
-<div class="container">
-	<%= yield %>
-</div>
+<!-- <div class="container"> -->
+  <div class="col-md-2 sidebar">
+    <div class="list-group draft-order">
+      <% @draft_picks.each do |pick| %>
+        <% if pick.selected? %>
+          <button type="button" class="list-group-item disabled selected"><span class="pick-number"><%= pick.to_d %></span><%= pick.nfl_player.name %></button>
+        <% else %>
+          <button type="button" class="list-group-item unselected"><span class="pick-number"><%= pick.to_d %></span><%= pick.fantasy_team.owner %></button>
+        <% end %>
+      <% end %>      
+    </div>
+  </div>
+	<div class="col-md-10 content">
+    <%= yield %> 
+  </div>
+<!-- </div> -->
 
 </body>
 </html>

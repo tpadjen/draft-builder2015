@@ -17,3 +17,35 @@
 
 @import "home.scss";
 @import "positions.scss";
+
+.sidebar {
+	// text-align: center;
+	background-color: #aaa;
+	border-right: 1px solid #aaa;
+	padding: 0;
+}
+
+.draft-order {
+	margin-bottom: 0;
+	
+	.list-group-item {
+		min-width: 200px;
+		width: 100%;
+		text-align: left;
+		font-size: 1.2em;
+
+		.pick-number {
+			margin-right: 15px;
+		}
+	}
+
+	.selected {
+		// background-color: black;
+		// color: #ccc;
+	}
+
+}
+
+.navbar {
+	margin-bottom: 0;
+}
