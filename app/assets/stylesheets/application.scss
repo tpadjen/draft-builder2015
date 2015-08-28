@@ -32,6 +32,13 @@ body { padding-top: 54px; }
 	background-color: #aaa;
 	border-right: 1px solid #aaa;
 	padding: 0;
+	height: 90vh;
+	overflow: scroll;
+	position: fixed;
+}
+
+.content {
+	margin-left: 240px;
 }
 
 .draft-order {
