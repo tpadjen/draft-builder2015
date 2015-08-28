@@ -32,7 +32,7 @@ body { padding-top: 54px; }
 	background-color: #aaa;
 	border-right: 1px solid #aaa;
 	padding: 0;
-	height: 90vh;
+	height: calc(100% - 54px);
 	overflow: scroll;
 	position: fixed;
 }
