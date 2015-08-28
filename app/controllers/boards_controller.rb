@@ -6,7 +6,7 @@ class BoardsController < ApplicationController
   end
 
   def adp
-  	@players = NflPlayer.all.order(:adp)
+  	@players = NflPlayer.all.order(:adp_ffc)
   	@rounds = @players.each_slice(10)
   end
 

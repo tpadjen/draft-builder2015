@@ -54,3 +54,30 @@ end
 
 keep('Jeremy Hill', 'Rodney')
 keep('Mark Ingram', 'Lucas')
+
+# load adp data
+puts
+puts "Loading ADP data from FFC"
+
+players = CSV.read('db/adp/ffc.csv')
+players.each do |player|
+	names = player[2].split(' ')
+	if names.last == 'Defense'
+		pl = NflPlayer.where(position: 'DEF').joins(:nfl_team).where(
+			"nfl_teams.shortname" => player[4]).first	
+	else
+		first, last = [names[0], names.last(names.count-1).join(' ')] 
+		pl = NflPlayer.where(last_name: last).joins(:nfl_team).where(
+			"nfl_teams.shortname" => player[4]).first
+	end
+
+	if !pl
+		p "#{player[2]} not found!!!"
+	else
+		pl.update(adp_ffc: player[1].to_d)
+	end
+end
+
+NflPlayer.where(adp_ffc: nil).each do |player|
+	player.update(adp_ffc: 170)
+end
