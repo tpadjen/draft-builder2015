@@ -32,9 +32,9 @@
 					<td class="arrow"><%= symbol %></td>
 					<% round.each do |player| %>
 						<% if player.picked? %>
-							<td class="<%= player.position.downcase %> player picked"><%= player.name %></td>
+							<td class="<%= player.position.downcase %> player picked" data-player="<%= player.id %>"><%= player.name %></td>
 						<% else %>
-							<td class="<%= player.position.downcase %> player"><%= player.name %></td>	
+							<td class="<%= player.position.downcase %> player unpicked" data-player="<%= player.id %>"><%= player.name %></td>	
 						<% end %>
 					<% end %>
 					<% if round.count < 10 %>

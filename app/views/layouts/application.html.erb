@@ -43,7 +43,7 @@
         </ul>
       </li>
     </ul>
-    <p class="navbar-text navbar-right current-pick">Current Pick: <%= @current_pick.to_d %> <%= @current_pick.fantasy_team.owner %></p>
+    <p class="navbar-text navbar-right current-pick">Current Pick: <span class="decimal"><%= @current_pick.to_d %></span> <span class="owner"><%= @current_pick.fantasy_team.owner %></span></p>
     </ul>
   </div>
 </nav>
@@ -53,9 +53,9 @@
     <div class="list-group draft-order">
       <% @draft_picks.each_with_index do |pick, index| %>
         <% if pick.selected? %>
-          <button type="button" class="list-group-item disabled selected <%= "ten" if (index+1) % 10 == 0 %>"><span class="pick-number"><%= pick.to_d %></span><%= pick.nfl_player.name %><span class="owner"><%= pick.fantasy_team.owner %></span></button>
+          <button type="button" class="list-group-item disabled selected <%= "ten" if (index+1) % 10 == 0 %>" data-pick-decimal="<%= pick.to_d %>"><span class="pick-number"><%= pick.to_d %></span><%= pick.nfl_player.name %><span class="owner"><%= pick.fantasy_team.owner %></span></button>
         <% else %>
-          <button type="button" class="list-group-item unselected <%= "ten" if (index+1) % 10 == 0 %>"><span class="pick-number"><%= pick.to_d %></span><%= pick.fantasy_team.owner %></button>
+          <button type="button" class="list-group-item unselected <%= "ten" if (index+1) % 10 == 0 %>" data-pick-decimal="<%= pick.to_d %>"><span class="pick-number"><%= pick.to_d %></span><%= pick.fantasy_team.owner %></button>
         <% end %>
       <% end %>      
     </div>

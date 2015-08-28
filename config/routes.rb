@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  post '/pick' => 'draft_picks#pick', :defaults => { :format => 'json' }
+
   get '/boards/draft' => 'boards#draft'
   get '/boards/adp' => 'boards#adp'
   get '/boards/points' => 'boards#points'

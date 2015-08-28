@@ -10,14 +10,14 @@ class PositionsController < ApplicationController
       @players = NflPlayer.where(position: @position).includes(:fantasy_team).includes(:nfl_team).order(projected_points: :desc)
     else
       @position = 'All'
-      @players = NflPlayer.all.includes(:fantasy_team).includes(:nfl_team).order(projected_points: :desc)
+      @players = NflPlayer.all.includes(:fantasy_team).includes(:nfl_team).order(:adp_ffc)
     end
 
-    if params[:rank] && params[:rank] == 'adp'
-      @adp = true
-      @players = @players.reorder(:adp_ffc)
-    else
+    if params[:rank] && params[:rank] == 'points'
       @points = true
+      @players = @players.reorder(projected_points: :desc)
+    else
+      @adp = true
     end
   end
 

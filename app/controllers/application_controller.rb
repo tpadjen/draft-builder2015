@@ -7,11 +7,15 @@ class ApplicationController < ActionController::Base
   before_action :set_positions
   before_action :set_fantasy_teams
 
+  def current_pick
+    DraftPick.unselected.includes(:fantasy_team).includes(:nfl_player).first
+  end
+
   private
 
   	def set_draft_picks
   		@draft_picks = DraftPick.all.includes(:fantasy_team).includes(:nfl_player).order(:number)
-  		@current_pick = DraftPick.unselected.includes(:fantasy_team).includes(:nfl_player).first
+  		@current_pick = current_pick
   	end
 
   	def set_positions

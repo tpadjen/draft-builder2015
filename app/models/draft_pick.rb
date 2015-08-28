@@ -26,4 +26,13 @@ class DraftPick < ActiveRecord::Base
   def to_d
   	"#{round}.#{round_pick}"
   end
+
+  def to_json
+    {
+      owner: fantasy_team.owner,
+      player: nfl_player ? nfl_player.name : nil,
+      number: number,
+      decimal: to_d
+    }
+  end
 end
