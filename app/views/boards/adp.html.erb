@@ -9,13 +9,6 @@
 				<% end %>
 				<th colspan="2"></th>
 			</tr>
-			<tr>
-				<th colspan="2"></th>
-				<% @fantasy_teams.each do |team| %>
-					<th><%= team.owner %></th>
-				<% end %>
-				<th colspan="2"></th>
-			</tr>
 		</thead>
 		<tbody>
 			<% @rounds.each_with_index do |round, index| %>
