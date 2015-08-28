@@ -43,17 +43,33 @@ body { padding-top: 54px; }
 		font-size: 1.2em;
 
 		.pick-number {
-			margin-right: 24px;
+			float: left;
+			margin-left: -46px;
+		}
+
+		span.owner {
+			float: right;
+			margin-top: 4px;
+			margin-right: -42px;
+			font-size: 0.7em;
+			color: black;
 		}
 
 		&.ten .pick-number {
-			margin-right: 15px;
+			// margin-right: 15px;
 		}
+
+		padding-left: 56px;
 	}
 
 	.selected {
 		// background-color: black;
 		// color: #ccc;
+		padding-right: 50px;
+
+		&:hover {
+			cursor: default;
+		}
 	}
 
 }
