@@ -24,7 +24,7 @@ class DraftPicksController < ApplicationController
       player = pick.nfl_player
       owner = pick.fantasy_team.owner
       pick.update(nfl_player: nil)
-      flash[:notice] = "#{owner}'s selection of #{player.name} has been undone."
+      flash[:success] = "#{owner}'s selection of #{player.name} has been undone."
       redirect_to :back
     else
       flash[:error] = "No picks have been made."
