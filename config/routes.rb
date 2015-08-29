@@ -3,7 +3,8 @@ Rails.application.routes.draw do
   post '/pick' => 'draft_picks#pick', :defaults => { :format => 'json' }
 
   get '/boards/draft' => 'boards#draft'
-  get '/boards/adp' => 'boards#adp'
+  get '/boards/adp_ffc' => 'boards#adp_ffc'
+  get '/boards/adp_espn' => 'boards#adp_espn'
   get '/boards/points' => 'boards#points'
 
   get 'team/:owner' => 'fantasy_teams#show'

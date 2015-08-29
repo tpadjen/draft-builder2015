@@ -5,9 +5,14 @@ class BoardsController < ApplicationController
   	@rounds = @picks.each_slice(10)
   end
 
-  def adp
+  def adp_ffc
   	@players = NflPlayer.all.includes(:fantasy_team).order(:adp_ffc)
   	@rounds = @players.each_slice(10)
+  end
+
+  def adp_espn
+    @players = NflPlayer.all.includes(:fantasy_team).order(:adp_espn)
+    @rounds = @players.each_slice(10)
   end
 
   def points
