@@ -59,7 +59,7 @@
     <div class="list-group draft-order">
       <% @draft_picks.each_with_index do |pick, index| %>
         <% if pick.selected? %>
-          <button type="button" class="list-group-item disabled selected <%= "ten" if (index+1) % 10 == 0 %>" data-pick-decimal="<%= pick.to_d %>"><span class="pick-number"><%= pick.to_d %></span><%= pick.nfl_player.name %><span class="owner"><%= pick.fantasy_team.owner %></span></button>
+          <button type="button" class="list-group-item disabled selected <%= "ten" if (index+1) % 10 == 0 %> <%= "keeper" if pick.keeper %>" data-pick-decimal="<%= pick.to_d %>"><span class="pick-number"><%= pick.to_d %></span><%= pick.nfl_player.name %><span class="owner"><%= pick.fantasy_team.owner %></span></button>
         <% elsif pick == @current_pick %>
           <button type="button" class="list-group-item unselected current <%= "ten" if (index+1) % 10 == 0 %>" data-pick-decimal="<%= pick.to_d %>"><span class="pick-number"><%= pick.to_d %></span><%= pick.fantasy_team.owner %></button>
         <% else %>

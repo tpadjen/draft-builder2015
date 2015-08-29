@@ -41,8 +41,21 @@ body { padding-top: 54px; }
 	overflow: scroll;
 	position: fixed;
 
+	.list-group {
+		cursor: default;
+
+		.list-group-item {
+			cursor: default;
+		}
+	}
+
 	.current {
 		background-color: yellow;
+	}
+
+	.keeper, .keeper:hover {
+		background: #999;
+		color: #eee
 	}
 }
 
