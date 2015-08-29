@@ -80,6 +80,15 @@ showAlert = (type, message) ->
   fadeOutAlert()
   return
 
+showUndo = () ->
+  $('.navbar .undo').show();
+  return
+
+hideUndo = (currentPick) ->
+  if currentPick.decimal == '1.1'
+    $('.navbar .undo').hide();
+  return
+
 postUndoForm = () ->
   $.post('/pick/undo.json').done((data) ->
     console.log('Successful undo')
@@ -92,6 +101,7 @@ postUndoForm = () ->
 
     updateCurrentPick data.prev_pick
     undoSideBar data.prev_pick
+    hideUndo(data.prev_pick)
     return
   ).fail (error) ->
     console.log('Failed to undo')
@@ -114,6 +124,7 @@ ready = ->
         ownerTD.text(data.current_pick.owner)
       updateCurrentPick data.next_pick
       updateSideBar data.current_pick
+      showUndo()
       $this.off('click')
       return
     ).fail (error) ->

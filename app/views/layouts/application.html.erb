@@ -44,7 +44,7 @@
       </li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
-      <li><form id="undo-form" action="/pick/undo" method="post"><%= token_tag %><button class="btn btn-danger navbar-btn undo">Undo Last Pick</button></form></li>
+      <li><form id="undo-form" action="/pick/undo" method="post"><%= token_tag %><button class="btn btn-danger navbar-btn undo" <%= "style=\"display: none\"".html_safe if @current_pick.to_d == '1.1' %>>Undo Last Pick</button></form></li>
     </ul>
     <% if @current_pick %>
       <p class="navbar-text navbar-right current-pick">Current Pick: <span class="decimal"><%= @current_pick.to_d %></span> <span class="owner"><%= @current_pick.fantasy_team.owner %></span></p>
