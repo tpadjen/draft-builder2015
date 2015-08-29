@@ -20,9 +20,14 @@
 @import "fantasy_teams.scss";
 @import "boards.scss";
 
-.navbar .current-pick {
-	font-size: 1.2em;
-	margin-right: 20px;
+.navbar {
+
+	padding-right: 20px;
+	
+	.current-pick {
+		font-size: 1.2em;
+		margin-right: 20px;
+	}
 }
 
 body { padding-top: 54px; }

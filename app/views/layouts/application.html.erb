@@ -43,12 +43,14 @@
         </ul>
       </li>
     </ul>
+    <ul class="nav navbar-nav navbar-right">
+      <li><button class="btn btn-danger navbar-btn">Undo Last Pick</button></li>
+    </ul>
     <% if @current_pick %>
       <p class="navbar-text navbar-right current-pick">Current Pick: <span class="decimal"><%= @current_pick.to_d %></span> <span class="owner"><%= @current_pick.fantasy_team.owner %></span></p>
     <% else %>
       <p class="navbar-text navbar-right current-pick">Draft Finished!</p>
     <% end %>
-    </ul>
   </div>
 </nav>
 
