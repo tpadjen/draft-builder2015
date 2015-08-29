@@ -23,7 +23,7 @@
 							<td><%= player.nfl_team.shortname %></td>
 							<!-- <td><%= player.adp_ffc %></td> -->
 							<td><%= player.projected_points %></td>
-							<td><%= player.fantasy_team.owner %></td>
+							<td class="owner"><%= player.fantasy_team.owner %></td>
 						</tr>
 					<% else %>
 						<tr class="player unpicked <%= player.position.downcase %>" data-player="<%= player.id %>">
@@ -33,7 +33,7 @@
 							<td><%= player.nfl_team.shortname %></td>
 							<!-- <td><%= player.adp_ffc %></td> -->
 							<td><%= player.projected_points %></td>
-							<td></td>
+							<td class="owner"></td>
 						</tr>
 					<% end %>	
 				<% end %>

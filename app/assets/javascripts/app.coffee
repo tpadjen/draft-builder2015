@@ -32,6 +32,9 @@ ready = ->
     $.post('/pick.json', player).done((data) ->
       console.log 'Successfully picked'
       $this.toggleClass('picked').toggleClass 'unpicked'
+      ownerTD = $this.find('td.owner')
+      if ownerTD
+        ownerTD.text(data.current_pick.owner)
       updateCurrentPick data.next_pick
       updateSideBar data.current_pick
       $this.off('click')
