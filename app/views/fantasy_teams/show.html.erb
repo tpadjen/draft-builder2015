@@ -8,6 +8,7 @@
 				<th>Number</th>		
 				<th>Round</th>
 				<th>Player</th>
+				<th>NFL Team</th>
 			</thead>
 			<tbody>
 				<% @picks.each_with_index do |pick, i| %>
@@ -16,7 +17,9 @@
 						<td><%= pick.to_d %></td>
 						<% if pick.selected? %>
 							<td class="<%= pick.nfl_player.position.downcase %>"><%= pick.nfl_player.name %></td>
+							<td><%= pick.nfl_player.nfl_team.shortname %></td>
 						<% else %>
+							<td></td>
 							<td></td>
 						<% end %>
 					</tr>

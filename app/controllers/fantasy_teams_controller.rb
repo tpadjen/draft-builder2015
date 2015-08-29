@@ -1,4 +1,5 @@
 class FantasyTeamsController < ApplicationController
+	around_action :skip_bullet, only: [:show]
 
 	def show
 		if !params[:owner]
@@ -7,7 +8,7 @@ class FantasyTeamsController < ApplicationController
 			@fantasy_team = FantasyTeam.where(
 				'lower(owner) = ?', params[:owner].downcase).first
 			if @fantasy_team
-				@picks = @fantasy_team.draft_picks.includes(:nfl_player).order(:number)
+				@picks = @fantasy_team.draft_picks.includes(nfl_player: :nfl_team).order(:number)
 				@selected = @picks.selected
 				build_roster
 			else

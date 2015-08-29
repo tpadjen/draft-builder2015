@@ -8,7 +8,14 @@ class ApplicationController < ActionController::Base
   before_action :set_fantasy_teams
 
   def current_pick
-    DraftPick.unselected.includes(:fantasy_team).includes(:nfl_player).first
+    DraftPick.unselected.first
+  end
+
+  def skip_bullet
+    Bullet.enable = false
+    yield
+  ensure
+    Bullet.enable = true
   end
 
   private
