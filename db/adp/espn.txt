@@ -55,7 +55,7 @@ Travis Kelce, KC	TE	58.1	+1.9	7.5	+0.8	98.9
 Andre Ellington, Ari	RB	58.7	-1.8	11.6	+0.4	95.2
 Vincent Jackson, TB	WR	58.9	+5.8	10.1	+1.6	94.2
 Joique Bell, Det	RB	60.8	-1	12.3	-0.5	90.7
-Seahawks D/ST,	SEA	62.1	-4.7	6.7	+0	99.9
+Seahawks D/ST, D/ST	SEA	62.1	-4.7	6.7	+0	99.9
 T.J. Yeldon, Jac	RB	63.7	+1.8	11.1	-0.3	93.4
 Brandon Marshall, NYJ	WR	63.9	+0.3	8.9	+0.4	95.1
 Matt Ryan, Atl	QB	64.7	+2.6	6.3	+1	95.9
@@ -80,9 +80,9 @@ Ameer Abdullah, Det	RB	82.5	-2.2	6.7	+2.2	90.0
 Isaiah Crowell, Cle	RB	82.5	+0.1	5.3	-0.2	86.9
 Allen Robinson, Jac	WR	82.6	+3.5	4.9	+0.5	88.4
 Jordan Cameron, Mia	TE	83.8	+0.3	2.8	+0.8	89.6
-Bills D/ST,	BUF	85.3	-2.5	3.8	+0.1	99.4
+Bills D/ST, D/ST	BUF	85.3	-2.5	3.8	+0.1	99.4
 Martavis Bryant, Pit	WR	86.5	-7.2	5.3	+0.9	89.8
-Texans D/ST,	HOU	87.4	-1.7	3.2	+0	99.4
+Texans D/ST, D/ST	HOU	87.4	-1.7	3.2	+0	99.4
 Eric Decker, NYJ	WR	87.6	+1.4	3.9	+0.2	88.4
 Larry Fitzgerald, Ari	WR	89.4	+1	3.0	+0.5	88.7
 Stephen Gostkowski, NE	K	92.9	-3.3	3.3	+0.1	99.8
@@ -97,7 +97,7 @@ Michael Floyd, Ari	WR	100.0	+3.4	2.2	+0	79.6
 Alfred Blue, Hou	RB	103.1	-5.6	3.7	+0.2	80.9
 Matthew Stafford, Det	QB	103.6	-0.5	3.9	+1	84.7
 Ryan Tannehill, Mia	QB	104.1	+0.6	2.9	+0.8	88.7
-Rams D/ST,	STL	107.1	-2.9	2.0	+0.1	97.2
+Rams D/ST, D/ST	STL	107.1	-2.9	2.0	+0.1	97.2
 Eli Manning, NYG	QB	107.1	-3.4	3.0	+0.8	86.1
 Adam Vinatieri, Ind	K	107.4	-2.7	2.4	+0.2	99.4
 Zach Ertz, Phi	TE	108.0	+0.5	2.0	+0	86.6
@@ -115,7 +115,7 @@ Danny Woodhead, SD	RB	115.6	+4.1	1.4	+0.2	54.4
 Devin Funchess, Car	WR	118.6	+2.9	2.3	+0.1	61.8
 Steven Hauschka, Sea	K	118.9	-2.8	1.9	+0.1	98.7
 Delanie Walker, Ten	TE	119.5	+4.8	1.4	+0.1	73.5
-Broncos D/ST,	DEN	119.6	-1.5	1.4	+0.1	91.5
+Broncos D/ST, D/ST	DEN	119.6	-1.5	1.4	+0.1	91.5
 Darren McFadden, Dal	RB	119.6	-11.8	2.4	-1.5	78.2
 Anquan Boldin, SF	WR	119.8	+3.5	1.3	+0.1	70.6
 Marcus Mariota, Ten	QB	119.9	-1.1	3.2	+0	34.6
@@ -124,12 +124,12 @@ Teddy Bridgewater, Min	QB	121.3	-1	3.4	+0.8	55.5
 Breshad Perriman, Bal	WR	121.6	+1.5	1.6	-0.3	68.9
 Charles Sims, TB	RB	121.7	+5.7	1.3	-0.3	60.5
 Joe Flacco, Bal	QB	122.2	-3.3	2.8	+0.7	42.9
-Patriots D/ST,	NE	122.3	-2.1	1.5	+0.1	71.1
-Jets D/ST,	NYJ	122.5	-1.3	1.3	-0.1	89.8
+Patriots D/ST, D/ST	NE	122.3	-2.1	1.5	+0.1	71.1
+Jets D/ST, D/ST	NYJ	122.5	-1.3	1.3	-0.1	89.8
 Sam Bradford, Phi	QB	122.6	+7.5	2.9	+1	57.1
 Kendall Wright, Ten	WR	123.4	+2.9	1.3	+0.1	64.0
 Jameis Winston, TB	QB	124.0	+0.9	3.2	+0.6	38.1
-Dolphins D/ST,	MIA	124.5	-0.9	1.6	+0.1	87.6
+Dolphins D/ST, D/ST	MIA	124.5	-0.9	1.6	+0.1	87.6
 Andre Williams, NYG	RB	124.8	+2.8	1.2	+0	57.2
 Vernon Davis, SF	TE	125.3	+0.6	2.0	-0.2	32.8
 Antonio Gates, SD	TE	125.5	-1.7	1.5	-0.7	69.4
@@ -140,12 +140,12 @@ Derek Carr, Oak	QB	128.0	+42	2.7	+2.7	15.4
 Fred Jackson, Buf	RB	128.4	+1.9	1.2	+0	54.3
 Kyle Rudolph, Min	TE	128.4	-0.6	2.1	+0.3	37.9
 Lorenzo Taliaferro, Bal	RB	128.7	+1.7	1.1	+0	45.7
-Eagles D/ST,	PHI	129.4	+0.7	1.7	+0.2	56.7
-Ravens D/ST,	BAL	129.8	-1.3	1.1	+0	81.5
+Eagles D/ST, D/ST	PHI	129.4	+0.7	1.7	+0.2	56.7
+Ravens D/ST, D/ST	BAL	129.8	-1.3	1.1	+0	81.5
 Markus Wheaton, Pit	WR	129.9	+40.1	1.8	+1.8	37.2
 Richard Rodgers, GB	TE	130.0	+40	0.0	+0	18.1
 Jay Cutler, Chi	QB	130.1	-0.2	2.9	+0.7	30.3
-Packers D/ST,	GB	130.2	-1.6	1.5	+0.1	48.1
+Packers D/ST, D/ST	GB	130.2	-1.6	1.5	+0.1	48.1
 DeVante Parker, Mia	WR	130.9	+3.9	1.4	+0.1	54.2
 DeAngelo Williams, Pit	RB	131.4	+0.9	1.2	+0	56.1
 Carson Palmer, Ari	QB	131.5	+0.2	2.4	+0.6	42.9
@@ -159,9 +159,9 @@ Darren Sproles, Phi	RB	132.9	-3	1.2	+0	44.8
 Justin Tucker, Bal	K	133.4	-0.3	1.4	+0.1	94.0
 Knile Davis, KC	RB	133.5	-0.4	1.3	+0	54.0
 Terrance Williams, Dal	WR	134.2	-1.5	1.7	+0.2	37.6
-Chiefs D/ST,	KC	134.4	-3.4	0.0	+0	18.4
+Chiefs D/ST, D/ST	KC	134.4	-3.4	0.0	+0	18.4
 Percy Harvin, Buf	WR	134.7	-3	1.3	+0	56.3
-Cardinals D/ST,	ARI	134.8	-1.3	1.2	+0	74.4
+Cardinals D/ST, D/ST	ARI	134.8	-1.3	1.2	+0	74.4
 Reggie Bush, SF	RB	134.9	-2.5	1.2	+0	47.2
 Ronnie Hillman, Den	RB	135.1	+34.9	0.0	+0	20.6
 Cody Latimer, Den	WR	135.3	+0.2	1.2	+0.1	51.8
@@ -172,14 +172,14 @@ Michael Crabtree, Oak	WR	136.3	-3.3	1.8	+0.3	33.2
 Larry Donnell, NYG	TE	137.0	+2.4	1.3	+0.1	40.3
 Cody Parkey, Phi	K	137.4	-0.9	1.3	+0.1	92.1
 Jonas Gray, NE	RB	137.4	-4.6	1.6	-0.1	36.3
-Panthers D/ST,	CAR	137.5	-1.6	1.6	+0	36.0
+Panthers D/ST, D/ST	CAR	137.5	-1.6	1.6	+0	36.0
 Austin Seferian-Jenkins, TB	TE	138.7	-1.3	1.5	+1.5	24.3
 Dorial Green-Beckham, Ten	WR	139.3	-1.2	1.7	+0.1	29.5
 Denard Robinson, Jac	RB	139.4	-0.6	1.1	+0	40.3
 Donte Moncrief, Ind	WR	139.4	+3.7	1.1	+0	29.9
 David Johnson, Ari	RB	139.8	+30.2	1.3	+0.1	24.6
 Mason Crosby, GB	K	140.1	-0.2	1.6	+0.2	74.0
-Lions D/ST,	DET	140.6	-3	1.1	+0	51.0
+Lions D/ST, D/ST	DET	140.6	-3	1.1	+0	51.0
 Brandon McManus, Den	K	140.7	+29.3	0.0	+0	10.6
 Dan Bailey, Dal	K	140.8	-1.3	1.4	+0.1	83.2
 Jerick McKinnon, Min	RB	142.1	+1.5	1.1	+0	25.8
@@ -190,7 +190,7 @@ Phil Dawson, SF	K	143.4	+26.6	0.0	+0	13.6
 Matt Prater, Det	K	143.9	-1.6	1.2	+0	82.4
 Marvin Jones, Cin	WR	144.3	+3.4	1.3	+1.3	20.1
 Roy Helu, Oak	RB	144.4	+25.6	0.0	+0	17.2
-Vikings D/ST,	MIN	145.0	+0.5	1.2	+0.1	30.0
+Vikings D/ST,	D/ST MIN	145.0	+0.5	1.2	+0.1	30.0
 Terrance West, Cle	RB	145.0	-0.9	1.1	-0.1	26.7
 Blair Walsh, Min	K	145.8	+0.1	1.4	+0	26.3
 Matt Bryant, Atl	K	146.5	+0	1.1	+0	78.8
