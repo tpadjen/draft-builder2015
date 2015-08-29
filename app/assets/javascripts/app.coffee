@@ -53,9 +53,16 @@ initialScroll = () ->
     b.scrollIntoView()
   return
 
+fadeOutAlerts = () ->
+  setTimeout (->
+    alert = $('.content .alert')
+    alert.fadeOut(1000)
+    return
+  ), 5000
 
 ready = ->
   initialScroll()
+  fadeOutAlerts()
   $('.player.unpicked').click ->
     $this = $(this)
     player = player: id: $(this).data('player')
