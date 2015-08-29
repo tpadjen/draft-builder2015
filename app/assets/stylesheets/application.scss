@@ -23,7 +23,7 @@
 .navbar {
 
 	padding-right: 20px;
-	
+
 	.current-pick {
 		font-size: 1.2em;
 		margin-right: 20px;
@@ -48,6 +48,20 @@ body { padding-top: 54px; }
 
 .content {
 	margin-left: 240px;
+
+	.alert {
+		margin-top: 8px;
+		width: auto;
+		display: inline-block;
+		position: fixed;
+		right: 10px;
+
+		.close {
+			margin-left: 10px;
+			position: relative;
+			top: -2px;
+		}
+	}
 }
 
 .draft-order {
