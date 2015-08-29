@@ -50,7 +50,7 @@ puts
 def keep(name, owner)
 	first, last = name.split(' ')
 	player = NflPlayer.where(first_name: first, last_name: last).first
-	FantasyTeam.where(owner: owner).first.draft_picks[3].update(nfl_player: player)
+	FantasyTeam.where(owner: owner).first.draft_picks[3].update(nfl_player: player, keeper: true)
 	puts "#{owner} is keeping #{player.name}"
 end
 
