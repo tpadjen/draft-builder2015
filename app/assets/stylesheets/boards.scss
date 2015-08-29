@@ -24,30 +24,6 @@
 		border-bottom: 0px solid black !important;
 	}
 
-	td.player {
-		-webkit-user-select: none; /* Chrome/Safari */        
-		-moz-user-select: none; /* Firefox */
-		-ms-user-select: none; /* IE10+ */
-
-		/* Rules below not implemented in browsers yet */
-		-o-user-select: none;
-		user-select: none;
-	}
-
-	td.player:hover {
-		background-color: #fafafa;
-		cursor: pointer;
-	}
-
-	td.player.picked {
-		background-color: #333;
-		color: #ccc;
-	}
-
-	td.player.picked:hover {
-		cursor: default;
-	}
-
 	td.arrow {
 		font-size: 1.75em;
 	}

@@ -16,7 +16,7 @@
 			<tbody>
 				<% @players.each_with_index do |player, index| %>
 					<% if player.picked? %>
-						<tr class="selected">
+						<tr class="player picked" data-player="<%= player.id %>">
 							<td><%= player.position_rank %></td>
 							<td><%= player.adp_round %></td>
 							<td><%= player.name %></td>
@@ -26,7 +26,7 @@
 							<td><%= player.fantasy_team.owner %></td>
 						</tr>
 					<% else %>
-						<tr class="unselected <%= player.position.downcase %>">
+						<tr class="player unpicked <%= player.position.downcase %>" data-player="<%= player.id %>">
 							<td><%= player.position_rank %></td>
 							<td><%= player.adp_round %></td>
 							<td><%= player.name %></td>
