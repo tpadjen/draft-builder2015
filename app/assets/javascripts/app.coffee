@@ -58,7 +58,7 @@ fadeOutAlerts = () ->
     alert = $('.content .alert')
     alert.fadeOut(1000)
     return
-  ), 5000
+  ), 8000
   return
 
 showAlert = (type, message) ->
