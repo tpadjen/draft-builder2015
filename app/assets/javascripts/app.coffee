@@ -26,7 +26,27 @@ searchFor = (_selector, _subject) ->
   null
   # will/should never get here
 
-
+pickPlayer = (button) ->
+  $this = $(button)
+  player = player: id: $this.data('player')
+  $.post('/pick.json', player).done((data) ->
+    console.log 'Successfully picked'
+    showAlert('alert-info', data.current_pick.owner + ' picked ' + data.current_pick.player)
+    $this.addClass('picked').removeClass 'unpicked'
+    ownerTD = $this.find('td.owner')
+    if ownerTD
+      ownerTD.text(data.current_pick.owner)
+    updateCurrentPick data.next_pick
+    updateSideBar data.current_pick
+    showUndo()
+    $this.off('click')
+    return
+  ).fail (error) ->
+    showAlert('alert-danger', "Error: could not complete pick.")
+    console.log 'Error picking'
+    console.log error
+    return
+  return
 
 updateCurrentPick = (currentPick) ->
   pick = $('.current-pick')
@@ -92,9 +112,15 @@ hideUndo = (currentPick) ->
 postUndoForm = () ->
   $.post('/pick/undo.json').done((data) ->
     console.log('Successful undo')
+    console.log(data)
     showAlert('alert-success', data.message)
-    tag = $("[data-player='" + data.current_pick.player_id + "']")
-    tag.toggleClass('picked').toggleClass('unpicked')
+    tag = $(".content").find("[data-player='" + data.prev_pick.player_id + "']")
+    console.log(tag)
+    tag.removeClass('picked').addClass('unpicked')
+    tag.click ->
+      pickPlayer(this)
+      return
+
     ownerTD = tag.find('td.owner')
     if ownerTD
       ownerTD.text('')
@@ -109,29 +135,13 @@ postUndoForm = () ->
     return
   return
 
+
+
 ready = ->
   initialScroll()
   fadeOutAlert()
   $('.player.unpicked').click ->
-    $this = $(this)
-    player = player: id: $(this).data('player')
-    $.post('/pick.json', player).done((data) ->
-      console.log 'Successfully picked'
-      showAlert('alert-info', data.current_pick.owner + ' picked ' + data.current_pick.player)
-      $this.toggleClass('picked').toggleClass 'unpicked'
-      ownerTD = $this.find('td.owner')
-      if ownerTD
-        ownerTD.text(data.current_pick.owner)
-      updateCurrentPick data.next_pick
-      updateSideBar data.current_pick
-      showUndo()
-      $this.off('click')
-      return
-    ).fail (error) ->
-      showAlert('alert-danger', "Error: could not complete pick.")
-      console.log 'Error picking'
-      console.log error
-      return
+    pickPlayer(this)
     return
 
   $('#undo-form').submit ->
