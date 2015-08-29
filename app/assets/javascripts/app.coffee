@@ -112,10 +112,8 @@ hideUndo = (currentPick) ->
 postUndoForm = () ->
   $.post('/pick/undo.json').done((data) ->
     console.log('Successful undo')
-    console.log(data)
     showAlert('alert-success', data.message)
     tag = $(".content").find("[data-player='" + data.prev_pick.player_id + "']")
-    console.log(tag)
     tag.removeClass('picked').addClass('unpicked')
     tag.click ->
       pickPlayer(this)

@@ -127,9 +127,21 @@ button.undo:focus {
 	margin-bottom: 0;
 }
 
-.player:hover {
-	background-color: #fafafa;
-	cursor: pointer;
+// td:hover {
+//    cursor: default;
+// }
+
+.adp, .positions, .points {
+	.player:hover {
+		background-color: #fafafa;
+		cursor: pointer;
+	}
+}
+
+.draft {
+	.player:hover {
+		cursor: default;
+	}
 }
 
 .player {
@@ -148,5 +160,6 @@ button.undo:focus {
 }
 
 .player.picked:hover {
+	background-color: #333;
 	cursor: default;
 }
