@@ -68,6 +68,7 @@ body { padding-top: 54px; }
 		display: inline-block;
 		position: fixed;
 		right: 10px;
+		z-index: 1000;
 
 		.close {
 			margin-left: 10px;
