@@ -5,7 +5,8 @@
 			<thead>
 				<tr>
 					<th>Rank</th>
-					<th class="<%= "highlighted" if @adp %>"><a href="?rank=adp">ADP Pick</a></th>
+					<th class="<%= "highlighted" if @adp_ffc %>"><a href="?rank=adp_ffc">FFC ADP</a></th>
+					<th class="<%= "highlighted" if @adp_espn %>"><a href="?rank=adp_espn">ESPN ADP</a></th>
 					<th>Player</th>
 					<th>NFL Team</th>
 					<!-- <th>ADP</th> -->
@@ -19,6 +20,7 @@
 						<tr class="player picked <%= player.position.downcase %>" data-player="<%= player.id %>">
 							<td><%= player.position_rank %></td>
 							<td><%= player.adp_round %></td>
+							<td><%= player.adp_espn %></td>
 							<td><%= player.name %></td>
 							<td><%= player.nfl_team.shortname %></td>
 							<!-- <td><%= player.adp_ffc %></td> -->
@@ -29,6 +31,7 @@
 						<tr class="player unpicked <%= player.position.downcase %>" data-player="<%= player.id %>">
 							<td><%= player.position_rank %></td>
 							<td><%= player.adp_round %></td>
+							<td><%= player.adp_espn %></td>
 							<td><%= player.name %></td>
 							<td><%= player.nfl_team.shortname %></td>
 							<!-- <td><%= player.adp_ffc %></td> -->

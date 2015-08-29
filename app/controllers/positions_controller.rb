@@ -16,8 +16,11 @@ class PositionsController < ApplicationController
     if params[:rank] && params[:rank] == 'points'
       @points = true
       @players = @players.reorder(projected_points: :desc)
+    elsif params[:rank] && params[:rank] == 'adp_espn'
+      @adp_espn = true
+      @players = @players.reorder(:adp_espn)
     else
-      @adp = true
+      @adp_ffc = true
     end
   end
 
