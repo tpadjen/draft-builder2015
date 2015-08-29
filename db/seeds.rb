@@ -81,3 +81,29 @@ end
 NflPlayer.where(adp_ffc: nil).each do |player|
 	player.update(adp_ffc: 170, adp_round: 20.0)
 end
+
+puts "\nLoading ADP data from FFC\n\n"
+File.open('db/adp/espn.txt', "r") do |f|
+  f.each_line do |line|
+    names, data = line.split(',').map { |part| part.strip.split(' ') }
+    if names.last == 'D/ST'
+			pl = NflPlayer.where(position: 'DEF').joins(:nfl_team).where(
+				"nfl_teams.shortname" => data[0].upcase).first	
+		else
+			first, last = [names[0], names.last(names.count-1).join(' ')] 
+			pl = NflPlayer.where(last_name: last, position: data[1]).joins(:nfl_team).where(
+				"nfl_teams.shortname" => data[0].upcase).first
+		end
+
+		if !pl
+			p "#{names.join(' ')} not found!!!"
+		else
+			pl.update(adp_espn: data[2].to_f)
+		end
+
+	end
+end
+
+NflPlayer.where(adp_espn: nil).each do |player|
+	player.update(adp_espn: 201)
+end
