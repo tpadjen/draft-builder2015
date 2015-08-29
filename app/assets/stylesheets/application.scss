@@ -64,6 +64,10 @@ body { padding-top: 54px; }
 	}
 }
 
+button.undo:focus {
+	outline: none;
+}
+
 .draft-order {
 	margin-bottom: 0;
 

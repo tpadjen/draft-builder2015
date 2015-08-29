@@ -8,10 +8,9 @@ class DraftPicksController < ApplicationController
     		if @current_pick.update(nfl_player: player)
     			render json: {
     				current_pick: @current_pick.to_json, 
-    				next_pick: current_pick.to_json }, status: 200
+    				next_pick: current_pick.to_json 
+          }, status: 200
     		else
-    			p 'ERRORS'
-    			print @current_pick.errors
     			render json: @current_pick.errors, status: :unprocessable_entity
     		end
     	end
@@ -24,11 +23,33 @@ class DraftPicksController < ApplicationController
       player = pick.nfl_player
       owner = pick.fantasy_team.owner
       pick.update(nfl_player: nil)
-      flash[:success] = "#{owner}'s selection of #{player.name} has been undone."
-      redirect_to :back
+      message = "#{owner}'s selection of #{player.name} has been undone."
+      respond_to do |format|
+        format.html do
+          flash[:success] = message
+          redirect_to :back   
+        end
+        format.json do
+          render json: {
+            message: message,
+            current_pick: @current_pick.to_json, 
+            prev_pick: current_pick.to_json 
+          }, status: 200 
+        end
+      end
+      
     else
-      flash[:error] = "No picks have been made."
-      redirect_to :back
+      message = "No picks have been made."
+      respond_to do |format|
+        format.html do
+          flash[:error] = message
+          redirect_to :back    
+        end
+        format.json do
+          render json: message, status: :unprocessable_entity
+        end
+      end
+      
     end
   end
 

@@ -38,12 +38,23 @@ updateSideBar = (currentPick) ->
   list = $('.sidebar .draft-order')
   button = list.find("[data-pick-decimal='" + currentPick.decimal + "']")
   button.html("<span class=\"pick-number\">" + currentPick.decimal + "</span>" + currentPick.player + "<span class=\"owner\">" + currentPick.owner + "</span>")
-  button.toggleClass('unselected').toggleClass('selected').toggleClass('disabled').toggleClass('current')
+  button.removeClass('unselected').addClass('selected').addClass('disabled').removeClass('current')
   # $('.sidebar').scrollTop
   b = button.prev('button').prev('button').prev('button').prev('button').prev('button').prev('button').get(0)
   if b
     b.scrollIntoView()
   nextInDOM('button.unselected', button).toggleClass('current')
+  return
+
+undoSideBar = (currentPick) ->
+  list = $('.sidebar .draft-order')
+  list.find('.list-group-item.current').removeClass('current')
+  button = list.find("[data-pick-decimal='" + currentPick.decimal + "']")
+  button.html("<span class=\"pick-number\">" + currentPick.decimal + "</span>" + currentPick.owner)
+  button.addClass('unselected').removeClass('selected').removeClass('disabled').addClass('current')
+  b = button.prev('button').prev('button').prev('button').prev('button').prev('button').prev('button').get(0)
+  if b
+    b.scrollIntoView()
   return
 
 initialScroll = () ->
@@ -53,24 +64,44 @@ initialScroll = () ->
     b.scrollIntoView()
   return
 
-fadeOutAlerts = () ->
+fadeOutAlert = () ->
+  alert = $('.content .alert:first')
   setTimeout (->
-    alert = $('.content .alert')
     alert.fadeOut(1000)
     return
   ), 8000
   return
 
 showAlert = (type, message) ->
-  $('.content').prepend('<div class="alert ' +
-    type + ' fade in"><button class="close" data-dismiss="alert">x</button>' +
-    message + '</div>')
-  fadeOutAlerts()
+  $('.content .alert').hide()
+  $('<div class="alert ' + type + '" style="display: none;">' + 
+    '<button class="close" data-dismiss="alert">x</button>' +
+    message + '</div>').prependTo('.content').fadeIn(500)
+  fadeOutAlert()
+  return
+
+postUndoForm = () ->
+  $.post('/pick/undo.json').done((data) ->
+    console.log('Successful undo')
+    showAlert('alert-success', data.message)
+    tag = $("[data-player='" + data.current_pick.player_id + "']")
+    tag.toggleClass('picked').toggleClass('unpicked')
+    ownerTD = tag.find('td.owner')
+    if ownerTD
+      ownerTD.text('')
+
+    updateCurrentPick data.prev_pick
+    undoSideBar data.prev_pick
+    return
+  ).fail (error) ->
+    console.log('Failed to undo')
+    showAlert('alert-danger', error.responseText)
+    return
   return
 
 ready = ->
   initialScroll()
-  fadeOutAlerts()
+  fadeOutAlert()
   $('.player.unpicked').click ->
     $this = $(this)
     player = player: id: $(this).data('player')
@@ -91,6 +122,10 @@ ready = ->
       console.log error
       return
     return
+
+  $('#undo-form').submit ->
+    postUndoForm()
+    return false
   return
 
 $(document).ready(ready)
