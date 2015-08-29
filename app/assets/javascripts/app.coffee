@@ -59,6 +59,14 @@ fadeOutAlerts = () ->
     alert.fadeOut(1000)
     return
   ), 5000
+  return
+
+showAlert = (type, message) ->
+  $('.content').prepend('<div class="alert ' +
+    type + ' fade in"><button class="close" data-dismiss="alert">x</button>' +
+    message + '</div>')
+  fadeOutAlerts()
+  return
 
 ready = ->
   initialScroll()
@@ -68,6 +76,7 @@ ready = ->
     player = player: id: $(this).data('player')
     $.post('/pick.json', player).done((data) ->
       console.log 'Successfully picked'
+      showAlert('alert-info', data.current_pick.owner + ' picked ' + data.current_pick.player)
       $this.toggleClass('picked').toggleClass 'unpicked'
       ownerTD = $this.find('td.owner')
       if ownerTD
@@ -77,6 +86,7 @@ ready = ->
       $this.off('click')
       return
     ).fail (error) ->
+      showAlert('alert-danger', "Error: could not complete pick.")
       console.log 'Error picking'
       console.log error
       return
