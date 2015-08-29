@@ -18,6 +18,20 @@ class DraftPicksController < ApplicationController
     end
   end
 
+  def undo
+    if DraftPick.first.selected?
+      pick = DraftPick.selected.where.not(keeper: true).order(:number).last
+      player = pick.nfl_player
+      owner = pick.fantasy_team.owner
+      pick.update(nfl_player: nil)
+      flash[:notice] = "#{owner}'s selection of #{player.name} has been undone."
+      redirect_to :back
+    else
+      flash[:error] = "No picks have been made."
+      redirect_to :back
+    end
+  end
+
   private
 
 end
