@@ -26,10 +26,13 @@ searchFor = (_selector, _subject) ->
   null
   # will/should never get here
 
+getLeague = () ->
+  return $('body').data('league')
+
 pickPlayer = (button) ->
   $this = $(button)
   player = player: id: $this.data('player')
-  $.post('/pick.json', player).done((data) ->
+  $.post('/l/' + getLeague() + '/pick.json', player).done((data) ->
     console.log 'Successfully picked'
     showAlert('alert-info', data.current_pick.owner + ' picked ' + data.current_pick.player)
     $this.addClass('picked').removeClass 'unpicked'
@@ -110,7 +113,7 @@ hideUndo = (currentPick) ->
   return
 
 postUndoForm = () ->
-  $.post('/pick/undo.json').done((data) ->
+  $.post('/l/' + getLeague() + '/pick/undo.json').done((data) ->
     console.log('Successful undo')
     showAlert('alert-success', data.message)
     tag = $(".content").find("[data-player='" + data.prev_pick.player_id + "']")

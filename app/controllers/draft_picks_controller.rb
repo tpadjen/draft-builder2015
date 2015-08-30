@@ -18,8 +18,8 @@ class DraftPicksController < LeaguesViewController
   end
 
   def undo
-    if DraftPick.first.selected?
-      pick = DraftPick.selected.where.not(keeper: true).order(:number).last
+    if @league.draft_picks.order(:number).first.selected?
+      pick = @league.draft_picks.selected.where.not(keeper: true).order(:number).last
       player = pick.nfl_player
       owner = pick.fantasy_team.owner
       prev_pick = pick.to_json
