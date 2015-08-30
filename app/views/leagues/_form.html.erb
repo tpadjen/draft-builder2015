@@ -21,7 +21,7 @@
   </div>
   <div class="field">
     <%= f.label :roster_style %> 
-    <%= f.select :roster_style, League.roster_styles.to_a.map {|w| [w[0].humanize, w[0]]} %>
+    <%= f.select :roster_style, League.roster_styles.to_select %>
   </div>
   <div class="actions">
     <%= f.submit %>
