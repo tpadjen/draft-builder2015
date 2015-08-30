@@ -1,0 +1,54 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <%= link_to 'Draft Builder', root_path(@league), {class: "navbar-brand" } %>
+    </div>
+    <div class="navbar-header">
+      <span class="navbar-brand">|</span>
+    </div>
+    <div class="navbar-header">
+      <%= link_to 'Beavers 2015', league_path(@league), {class: "navbar-brand" } %>
+    </div>
+    <ul class="nav navbar-nav">
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Boards <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><%= link_to 'Draft', league_draft_board_path(@league) %></li>
+          <li><%= link_to 'FFC ADP', league_ffc_board_path(@league) %></li>
+          <li><%= link_to 'ESPN ADP', league_espn_board_path(@league) %></li>
+          <li><%= link_to 'Points', league_points_board_path(@league) %></li>
+        </ul>
+      </li>
+    </ul>
+    <ul class="nav navbar-nav">
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Positions <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <% @positions.each do |position| %>
+            <li><%= link_to position, league_positions_path(@league, position.downcase) %></li>
+          <% end %>
+        </ul>
+      </li>
+    </ul>
+    <ul class="nav navbar-nav">
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Fantasy Teams <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <% @fantasy_teams.each do |team| %>
+            <li><%= link_to team.owner, league_team_path(@league, team.owner) %></li>
+          <% end %>
+          <li role="separator" class="divider"></li>
+          <li><%= link_to 'Edit Teams', league_teams_edit_path(@league) %></li>
+        </ul>
+      </li>
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+      <li><form id="undo-form" action="/pick/undo" method="post"><%= token_tag %><button class="btn btn-danger navbar-btn undo" <%= "style=\"display: none\"".html_safe if @current_pick && @current_pick.to_d == '1.1' %>>Undo Last Pick</button></form></li>
+    </ul>
+    <% if @current_pick %>
+      <p class="navbar-text navbar-right current-pick">Current Pick: <span class="decimal"><%= @current_pick.to_d %></span> <span class="owner"><%= @current_pick.fantasy_team.owner %></span></p>
+    <% else %>
+      <p class="navbar-text navbar-right current-pick">Draft Finished!</p>
+    <% end %>
+  </div>
+</nav>
