@@ -112,6 +112,14 @@ hideUndo = (currentPick) ->
     $('.navbar .undo').hide();
   return
 
+updateTeamPageOnUndo = (html) ->
+  if html && $('.fantasy-teams').length >= 1
+    tbody = $('.picks-table').html(html.picks)
+    tbody = $('.roster-table').html(html.roster)
+  
+  return
+
+
 postUndoForm = () ->
   $.post('/l/' + getLeague() + '/pick/undo.json').done((data) ->
     console.log('Successful undo')
@@ -125,10 +133,8 @@ postUndoForm = () ->
         pickPlayer(this)
         return
 
-    # on the fantasy team's page with the undone pick
-    if data.team_html && $('.fantasy-teams').length >= 1
-      $('.fantasy-teams').replaceWith($(data.team_html).find('.fantasy-teams'))
-    
+    # check if on the fantasy team's page with the undone pick
+    updateTeamPageOnUndo(data.html)
 
     ownerTD = tag.find('td.owner')
     if ownerTD

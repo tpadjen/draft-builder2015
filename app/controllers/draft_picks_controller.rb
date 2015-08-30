@@ -35,22 +35,23 @@ class DraftPicksController < LeaguesViewController
           redirect_to :back   
         end
         format.json do
-          team_html = nil
+          html = nil
           if request.referer.include? '/team/' # on a team's page
             ref_owner = URI.decode(request.referer.partition('/team/').last)
-            if owner.downcase == ref_owner.downcase
-              params = {
-                league_id: @league.id, 
-                owner: URI.decode(request.referer.partition('/team/').last)
-              }
-              request.format = :html
-              team_html = renderActionInOtherController(FantasyTeamsController, :show, params)
-              request.format = :json
+            if owner.downcase == ref_owner.downcase # on the changed page
+              html = {}
+              fantasy_team = FantasyTeam.from_owner(owner)
+              @picks, @starters, @bench = fantasy_team.roster
+               
+              with_format :html do
+                html[:picks] = render_to_string partial: 'fantasy_teams/picks_table'
+                html[:roster] = render_to_string partial: 'fantasy_teams/roster_table'
+              end
             end
           end
 
           render json: {
-            team_html: team_html,
+            html: html,
             message: message,
             current_pick: @current_pick.to_json, 
             prev_pick: prev_pick
@@ -72,15 +73,5 @@ class DraftPicksController < LeaguesViewController
       
     end
   end
-
-  private
-
-    def renderActionInOtherController(controller,action,params)
-      c = controller.new
-      c.params = params
-      c.dispatch(action, request)
-      c.process_action(action)
-      c.response.body
-    end
 
 end

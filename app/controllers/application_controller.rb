@@ -10,4 +10,12 @@ class ApplicationController < ActionController::Base
     Bullet.enable = true
   end
 
+  def with_format(format, &block)
+    old_formats = formats
+    self.formats = [format]
+    block.call
+    self.formats = old_formats
+    nil
+  end
+
 end

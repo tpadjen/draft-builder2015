@@ -1,0 +1,94 @@
+<table class="table table-bordered roster-table">
+	<tbody>
+		<tr>
+			<td colspan="2" class="heading">Starters</td>
+		</tr>
+		<tr>
+			<td class="qb">QB</td>
+			<% if @starters.key?('QB') %>
+				<td class="qb"><%= @starters['QB'].name %></td>
+			<% else %>
+				<td></td>
+			<% end %>
+		</tr>
+		<tr>
+			<td class="rb">RB1</td>
+			<% if @starters.key?('RB1') %>
+				<td class="rb"><%= @starters['RB1'].name %></td>
+			<% else %>
+				<td></td>
+			<% end %>
+		</tr>
+		<% if @starters.key?('RB2') %>
+			<tr>
+				<td class="rb">RB2</td>
+				<td class="rb"><%= @starters['RB2'].name %></td>
+			</tr>
+		<% end %>
+		<% if !@starters.key?('RB2') && !@starters.key?('WR3') %>
+			<tr>
+				<td>RB2/WR3</td>
+				<td></td>
+			</tr>
+		<% end %>
+		<tr>
+			<td class="wr">WR1</td>
+			<% if @starters.key?('WR1') %>
+				<td class="wr"><%= @starters['WR1'].name %></td>
+			<% else %>
+				<td></td>
+			<% end %>
+		</tr>
+		<tr>
+			<td class="wr">WR2</td>
+			<% if @starters.key?('WR2') %>
+				<td class="wr"><%= @starters['WR2'].name %></td>
+			<% else %>
+				<td></td>
+			<% end %>
+		</tr>
+		<% if @starters.key?('WR3') %>
+			<tr>
+				<td class="wr">WR3</td>
+				<td class="wr"><%= @starters['WR3'].name %></td>
+			</tr>
+		<% end %>
+		<tr>
+			<td class="te">TE</td>
+			<% if @starters.key?('TE') %>
+				<td class="te"><%= @starters['TE'].name %></td>
+			<% else %>
+				<td></td>
+			<% end %>
+		</tr>
+		<tr>
+			<td class="def">DEF</td>
+			<% if @starters.key?('DEF') %>
+				<td class="def"><%= @starters['DEF'].name %></td>
+			<% else %>
+				<td></td>
+			<% end %>
+		</tr>
+		<tr>
+			<td class="k">K</td>
+			<% if @starters.key?('K') %>
+				<td class="k"><%= @starters['K'].name %></td>
+			<% else %>
+				<td></td>
+			<% end %>
+		</tr>
+	</tbody>
+	<tbody>
+		<tr>
+			<td colspan="2" class="heading">Bench</td>
+		</tr>
+		<% ['QB', 'RB', 'WR', 'TE', 'DEF', 'K'].each do |position| %>
+			<% @bench[position].each do |player| %>
+				<tr>
+					<td class="<%= position.downcase %>"><%= position %></td>
+					<td class="<%= position.downcase %>"><%= player.name %></td>
+				</tr>
+			<% end %>
+		<% end %>
+	</tbody>
+</table>
