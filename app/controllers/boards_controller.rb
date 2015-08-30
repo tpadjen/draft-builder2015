@@ -1,7 +1,11 @@
 class BoardsController < LeaguesViewController
+  around_action :skip_bullet, only:[:draft]
 
   def draft
-  	@players = @league.draft_picks.selected.includes(:nfl_player).order(:number).map(&:nfl_player)
+  	@players = @league.draft_picks.selected
+                  .includes(nfl_player: :fantasy_team)
+                  .order(:number)
+                  .map(&:nfl_player)
     @rounds = @players.each_slice(@league.size)
     @klass = 'draft'
     @board_name = 'Draft'
