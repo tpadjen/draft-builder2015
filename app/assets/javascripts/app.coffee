@@ -117,10 +117,13 @@ postUndoForm = () ->
     console.log('Successful undo')
     showAlert('alert-success', data.message)
     tag = $(".content").find("[data-player='" + data.prev_pick.player_id + "']")
-    tag.removeClass('picked').addClass('unpicked')
-    tag.click ->
-      pickPlayer(this)
-      return
+    if $('.draft').length >= 1 # on the draft board
+      tag.replaceWith('<td></td>')
+    else # on a picking board
+      tag.removeClass('picked').addClass('unpicked')
+      tag.click ->
+        pickPlayer(this)
+        return
 
     ownerTD = tag.find('td.owner')
     if ownerTD
