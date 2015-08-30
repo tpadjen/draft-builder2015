@@ -1,22 +1,44 @@
 class BoardsController < LeaguesViewController
 
   def draft
-  	@picks = DraftPick.all.includes(:nfl_player).order(:number)
-  	@rounds = @picks.each_slice(10)
+  	@players = @league.draft_picks.selected.includes(:nfl_player).order(:number).map(&:nfl_player)
+    @rounds = @players.each_slice(@league.size)
+    @klass = 'draft'
+    @board_name = 'Draft'
+    set_render
   end
 
   def adp_ffc
-  	@players = NflPlayer.all.includes(:fantasy_team).order(:adp_ffc)
-  	@rounds = @players.each_slice(10)
+  	@players = load_players.order(:adp_ffc)
+    @rounds = @players.each_slice(@league.size)
+    @klass = 'adp'
+    @board_name = 'FFC ADP'
+    set_render
   end
 
   def adp_espn
-    @players = NflPlayer.all.includes(:fantasy_team).order(:adp_espn)
-    @rounds = @players.each_slice(10)
+    @players = load_players.order(:adp_espn)
+    @rounds = @players.each_slice(@league.size)
+    @klass = 'adp'
+    @board_name = 'ESPN ADP'
+    set_render
   end
 
   def points
-  	@players = NflPlayer.all.includes(:fantasy_team).order(projected_points: :desc)
-  	@rounds = @players.each_slice(10)
+  	@players = load_players.order(projected_points: :desc)
+    @rounds = @players.each_slice(@league.size)
+    @klass = 'points'
+    @board_name = 'Projected Points'    
+    set_render
   end
+
+  private
+
+    def load_players
+      NflPlayer.all.includes(:fantasy_team)
+    end
+
+    def set_render
+      render 'board'
+    end
 end
