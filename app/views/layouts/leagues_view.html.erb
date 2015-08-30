@@ -40,7 +40,7 @@
         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Fantasy Teams <span class="caret"></span></a>
         <ul class="dropdown-menu">
           <% @fantasy_teams.each do |team| %>
-            <li><%= link_to team.owner, league_team_path(@league, team.owner.downcase) %></li>
+            <li><%= link_to team.owner, league_team_path(@league, team.owner) %></li>
           <% end %>
           <li role="separator" class="divider"></li>
           <li><%= link_to 'Edit Teams', league_teams_edit_path(@league) %></li>

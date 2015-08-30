@@ -125,6 +125,11 @@ postUndoForm = () ->
         pickPlayer(this)
         return
 
+    # on the fantasy team's page with the undone pick
+    if data.team_html && $('.fantasy-teams').length >= 1
+      $('.fantasy-teams').replaceWith($(data.team_html).find('.fantasy-teams'))
+    
+
     ownerTD = tag.find('td.owner')
     if ownerTD
       ownerTD.text('')
