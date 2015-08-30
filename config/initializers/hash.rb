@@ -1,7 +1,7 @@
 class Hash
 	def to_select(humanize = true)
 		if humanize
-			to_a.map {|w| [w[0].humanize, w[0]]}
+			keys.to_a.map {|w| [w.titleize, w]}
 		else
 			keys.to_a
 		end

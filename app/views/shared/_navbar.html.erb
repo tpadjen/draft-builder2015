@@ -1,13 +1,13 @@
 <nav class="navbar navbar-default navbar-fixed-top">
   <div class="container-fluid">
     <div class="navbar-header">
-      <%= link_to 'Draft Builder', root_path(@league), {class: "navbar-brand" } %>
+      <%= link_to 'Draft Builder', root_path, {class: "navbar-brand" } %>
     </div>
     <div class="navbar-header">
       <span class="navbar-brand">|</span>
     </div>
     <div class="navbar-header">
-      <%= link_to 'Beavers 2015', league_path(@league), {class: "navbar-brand" } %>
+      <%= link_to "#{@league.name} #{@league.year}", league_path(@league), {class: "navbar-brand" } %>
     </div>
     <ul class="nav navbar-nav">
       <li class="dropdown">

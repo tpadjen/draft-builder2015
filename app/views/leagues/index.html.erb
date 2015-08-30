@@ -1,29 +1,37 @@
-<p id="notice"><%= notice %></p>
+<div class="leagues index">
+  <h1>Leagues</h1>
 
-<h1>Listing Leagues</h1>
+  <div class="col-md-3">
+    <%= link_to 'New League', new_league_path, {class: "btn btn-primary"} %>
+  </div>
+  <div class="col-md-6">
+    
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Year</th>
+          <th>Size</th>
+          <th>Roster Style</th>
+          <th colspan="2"></th>
+        </tr>
+      </thead>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Size</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @leagues.each do |league| %>
-      <tr>
-        <td><%= league.name %></td>
-        <td><%= league.size %></td>
-        <td><%= link_to 'Show', league %></td>
-        <td><%= link_to 'Edit', edit_league_path(league) %></td>
-        <td><%= link_to 'Destroy', league, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New League', new_league_path %>
+      <tbody>
+        <% @leagues.each do |league| %>
+          <tr>
+            <td><%= link_to league.name, league %></td>
+            <td><%= league.year %></td>
+            <td><%= league.size %></td>
+            <td><%= league.roster_style.titleize %></td>
+            <td><%= link_to 'Edit', edit_league_path(league), {class: "btn btn-warning"} %></td>
+            <td><%= link_to 'Delete', league, 
+              method: :delete,
+              data: { confirm: "Are you sure you want to delete #{league.name}? All of its teams and draft picks will be lost!" },
+              class: "btn btn-danger" %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
