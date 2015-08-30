@@ -28,34 +28,17 @@ puts "\nLoading NFL Players"
 	end
 end
 
-owners = ['Ian', 'Brandt', 'Lamb', 'Goldson', 'Carlson', 
-	'Chuck', 'Kinder', 'Lucas', 'Rodney', 'TBQ']
-owners.each_with_index do |owner, i|
-	fantasy_team = FantasyTeam.find_or_create_by(owner: owner, pick_number: i + 1)
-	puts "\nLoading #{owner}'s draft: "
-	picks = []
-	fantasy_team.draft_picks.delete_all
-
-	(1..16).each do |round|
-		offset = round % 2 == 1 ? i + 1 : 10 - i
-		pick = (round-1)*10 + offset
-		fantasy_team.draft_picks.create(number: pick)	
-	end
-
-	puts "He gets picks #{fantasy_team.draft_picks.map(&:number)}\n"
-end
-
 # keepers
-puts
-def keep(name, owner)
-	first, last = name.split(' ')
-	player = NflPlayer.where(first_name: first, last_name: last).first
-	FantasyTeam.where(owner: owner).first.draft_picks[3].update(nfl_player: player, keeper: true)
-	puts "#{owner} is keeping #{player.name}"
-end
+# puts
+# def keep(name, owner)
+# 	first, last = name.split(' ')
+# 	player = NflPlayer.where(first_name: first, last_name: last).first
+# 	FantasyTeam.where(owner: owner).first.draft_picks[3].update(nfl_player: player, keeper: true)
+# 	puts "#{owner} is keeping #{player.name}"
+# end
 
-keep('Jeremy Hill', 'Rodney')
-keep('Mark Ingram', 'Lucas')
+# keep('Jeremy Hill', 'Rodney')
+# keep('Mark Ingram', 'Lucas')
 
 # load adp data
 puts "\nLoading ADP data from FFC\n\n"

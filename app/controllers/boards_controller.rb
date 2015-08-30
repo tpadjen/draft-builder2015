@@ -1,4 +1,4 @@
-class BoardsController < ApplicationController
+class BoardsController < LeaguesViewController
 
   def draft
   	@picks = DraftPick.all.includes(:nfl_player).order(:number)

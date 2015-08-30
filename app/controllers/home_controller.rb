@@ -1,4 +1,4 @@
-class HomeController < ApplicationController
+class HomeController < LeaguesViewController
 
 	def index
 		@positions = NflPlayer::VALID_POSITIONS.clone.unshift('All')

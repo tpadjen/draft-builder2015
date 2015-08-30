@@ -1,4 +1,4 @@
-class FantasyTeamsController < ApplicationController
+class FantasyTeamsController < LeaguesViewController
 	around_action :skip_bullet, only: [:show]
 
 	def show

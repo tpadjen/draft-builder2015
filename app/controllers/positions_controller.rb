@@ -1,8 +1,8 @@
-class PositionsController < ApplicationController
+class PositionsController < LeaguesViewController
 
   def index
     if params[:position] && !NflPlayer.position_valid?(params[:position])
-      redirect_to root_path
+      redirect_to league_all_positions_path(params[:league_id])
     end
 
     if params[:position]

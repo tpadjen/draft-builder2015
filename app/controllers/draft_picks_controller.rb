@@ -1,5 +1,5 @@
-class DraftPicksController < ApplicationController
-  
+class DraftPicksController < LeaguesViewController
+
   def pick
     if !@current_pick
       render json: "Draft over", status: 401

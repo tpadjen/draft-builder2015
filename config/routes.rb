@@ -1,21 +1,24 @@
 Rails.application.routes.draw do
-  post '/pick/undo' => 'draft_picks#undo'
-  post '/pick' => 'draft_picks#pick', :defaults => { :format => 'json' }
+  resources :leagues, path: '/l' do
+    post 'pick/undo' => 'draft_picks#undo'
+    post 'pick' => 'draft_picks#pick', :defaults => { :format => 'json' }
 
-  get '/boards/draft' => 'boards#draft'
-  get '/boards/adp_ffc' => 'boards#adp_ffc'
-  get '/boards/adp_espn' => 'boards#adp_espn'
-  get '/boards/points' => 'boards#points'
+    get 'boards/draft' => 'boards#draft', as: :draft_board
+    get 'boards/adp_ffc' => 'boards#adp_ffc', as: :ffc_board
+    get 'boards/adp_espn' => 'boards#adp_espn', as: :espn_board
+    get 'boards/points' => 'boards#points', as: :points_board
 
-  get 'teams/edit' => 'fantasy_teams#edit'
-  get 'team/:owner' => 'fantasy_teams#show'
-  get '/:position' => 'positions#index'
+    get 'teams/edit' => 'fantasy_teams#edit', as: :teams_edit
+    get 'team/:owner' => 'fantasy_teams#show', as: :team
+    get 'pos/:position' => 'positions#index', as: :positions
+    get 'pos' => 'positions#index', as: :all_positions
+  end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root 'positions#index'
+  root 'leagues#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
