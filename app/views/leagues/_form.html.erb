@@ -19,6 +19,10 @@
     <%= f.label :size %><br>
     <%= f.number_field :size %>
   </div>
+  <div class="field">
+    <%= f.label :roster_style %> 
+    <%= f.select :roster_style, League.roster_styles.to_a.map {|w| [w[0].humanize, w[0]]} %>
+  </div>
   <div class="actions">
     <%= f.submit %>
   </div>
