@@ -154,12 +154,14 @@ button.undo:focus {
 	user-select: none;
 }
 
-.player.picked {
-	background-color: #333;
-	color: #ccc;
-}
+.board:not(.draft) {
+	.player.picked {
+		background-color: #333;
+		color: #ccc;
+	}
 
-.player.picked:hover {
-	background-color: #333;
-	cursor: default;
+	.player.picked:hover {
+		background-color: #333;
+		cursor: default;
+	}
 }
