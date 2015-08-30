@@ -19,6 +19,10 @@ class FantasyTeamsController < ApplicationController
   	redirect_to root_path
 	end
 
+	def edit
+		
+	end
+
 	private
 
 		def build_roster

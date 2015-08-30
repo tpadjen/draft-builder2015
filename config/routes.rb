@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   get '/boards/adp_espn' => 'boards#adp_espn'
   get '/boards/points' => 'boards#points'
 
+  get 'teams/edit' => 'fantasy_teams#edit'
   get 'team/:owner' => 'fantasy_teams#show'
   get '/:position' => 'positions#index'
 

@@ -41,6 +41,8 @@
           <% @fantasy_teams.each do |team| %>
             <li><%= link_to team.owner, "/team/#{team.owner.downcase}" %></li>
           <% end %>
+          <li role="separator" class="divider"></li>
+          <li><%= link_to 'Edit Teams', '/teams/edit' %></li>
         </ul>
       </li>
     </ul>
