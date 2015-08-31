@@ -6,11 +6,31 @@ class LeaguesViewController < ApplicationController
   before_action :set_positions
   before_action :set_fantasy_teams
 
-  def current_pick
-    @league.draft_picks.unselected.first
+  def edit_teams
+    @teams = @league.fantasy_teams.order(:pick_number)
+    render 'leagues/edit_teams'
+  end
+
+  def update_teams
+    respond_to do |format|
+      if @league.update(team_params)
+        format.html { redirect_to @league, notice: 'League was successfully updated.' }
+        format.json { render :show, status: :ok, location: @league }
+      else
+        format.html do
+          @teams = @league.fantasy_teams.order(:pick_number)
+          render 'leagues/edit_teams' 
+        end
+        format.json { render json: @league.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
   private
+
+    def current_pick
+      @league.draft_picks.unselected.first
+    end
 
   	def set_league
       @league = League.find(params[:league_id])
@@ -27,6 +47,10 @@ class LeaguesViewController < ApplicationController
 
     def set_fantasy_teams
       @fantasy_teams = @league.fantasy_teams.order(:pick_number)
+    end
+
+    def team_params
+      params.require(:league).permit(fantasy_teams_attributes: [:owner, :id])
     end
 	
 end

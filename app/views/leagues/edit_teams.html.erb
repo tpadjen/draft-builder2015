@@ -1,6 +1,18 @@
 <h1>Editing Teams</h1>
 <div class="col-md-4 col-md-offset-4">
-	<%= form_for @league, html: {class: "form-horizontal"} do |f| %>
+	<%= form_for @league, url: league_teams_update_path(@league), html: {class: "form-horizontal"} do |f| %>
+		<% if @league.errors.any? %>
+		  <div id="error_explanation">
+		    <h2><%= pluralize(@league.errors.count, "error") %> prohibited this league from being saved:</h2>
+
+		    <ul>
+		    <% @league.errors.full_messages.each do |message| %>
+		      <li><%= message %></li>
+		    <% end %>
+		    </ul>
+		  </div>
+		<% end %>
+
 		<% @teams.each_with_index do |team, i| %>
 			<div class="form-group">
 				<h2>Pick <%= i+1 %></h2>

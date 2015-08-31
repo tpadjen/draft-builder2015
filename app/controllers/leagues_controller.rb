@@ -34,8 +34,6 @@ class LeaguesController < ApplicationController
     respond_to do |format|
       if @league.save
 
-        owners = ['Ian', 'Brandt', 'Lamb', 'Goldson', 'Carlson', 
-          'Chuck', 'Kinder', 'Lucas', 'Rodney', 'TBQ']
         (0..(@league.size-1)).each_with_index do |i|
           fantasy_team = @league.fantasy_teams.create(owner: "Team #{i+1}", pick_number: i+1)
           picks = []
@@ -63,8 +61,7 @@ class LeaguesController < ApplicationController
   def update
     respond_to do |format|
       if @league.update(league_params)
-        format.html { redirect_to @league, notice: 'League was successfully updated.' }
-        format.json { render :show, status: :ok, location: @league }
+        format.html { redirect_to leagues_path, notice: 'League was successfully updated.' }
       else
         format.html { render :edit }
         format.json { render json: @league.errors, status: :unprocessable_entity }

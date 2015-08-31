@@ -8,7 +8,9 @@ Rails.application.routes.draw do
     get 'boards/adp_espn' => 'boards#adp_espn', as: :espn_board
     get 'boards/points' => 'boards#points', as: :points_board
 
-    get 'teams/edit' => 'fantasy_teams#edit', as: :teams_edit
+    get 'teams/edit' => 'leagues_view#edit_teams', as: :teams_edit
+    # post 'teams/update' => 'leagues_view#update_teams', as: :teams_update
+    patch 'teams/update' => 'leagues_view#update_teams', as: :teams_update
     get 'team/:owner' => 'fantasy_teams#show', as: :team
     get 'pos/:position' => 'positions#index', as: :positions
     get 'pos' => 'positions#index', as: :all_positions

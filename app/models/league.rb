@@ -9,6 +9,9 @@ class League < ActiveRecord::Base
 
 	validates :name, uniqueness: true
 
+	accepts_nested_attributes_for :fantasy_teams
+	validates_associated :fantasy_teams
+
 	def year
 		created_at.year
 	end
