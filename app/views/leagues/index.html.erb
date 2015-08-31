@@ -2,30 +2,33 @@
   <h1>Leagues</h1>
 
   <div class="col-md-6 col-md-offset-3">
-    
-    <table class="table">
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Year</th>
-          <th>Size</th>
-          <th>Roster Style</th>
-          <th colspan="2"></th>
-        </tr>
-      </thead>
-
-      <tbody>
-        <% @leagues.each do |league| %>
+    <% if @leagues.count > 0 %>
+      <table class="table">
+        <thead>
           <tr>
-            <td><%= link_to league.name, league %></td>
-            <td><%= league.year %></td>
-            <td><%= league.size %></td>
-            <td><%= league.roster_style.titleize %></td>
-            <td><%= link_to 'Edit', edit_league_path(league), {class: "btn btn-warning"} %></td>
-            <td><%= link_to 'Delete', league, class: "btn btn-danger delete", data: {name: league.name} %></td>
+            <th>Name</th>
+            <th>Year</th>
+            <th>Size</th>
+            <th>Roster Style</th>
+            <th colspan="2"></th>
           </tr>
-        <% end %>
-      </tbody>
-    </table>
+        </thead>
+
+        <tbody>
+          <% @leagues.each do |league| %>
+            <tr>
+              <td><%= link_to league.name, league %></td>
+              <td><%= league.year %></td>
+              <td><%= league.size %></td>
+              <td><%= league.roster_style.titleize %></td>
+              <td><%= link_to 'Edit', edit_league_path(league), {class: "btn btn-warning"} %></td>
+              <td><%= link_to 'Delete', league, class: "btn btn-danger delete", data: {name: league.name} %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    <% else %>
+      <p class="no-leagues">Please create a league to get started.</p>
+    <% end %>
   </div>
 </div>

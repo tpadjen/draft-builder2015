@@ -3,7 +3,16 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 .leagues.index {
+	h1 {
+		margin-bottom: 20px;
+	}
+
 	table td {
 		font-size: 1.5em;
+	}
+
+	.no-leagues {
+		text-align: center;
+		font-size: 1.2em;
 	}
 }

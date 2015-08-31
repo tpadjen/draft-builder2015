@@ -49,7 +49,13 @@ confirmLeagueDeletion = (link) ->
           confirmButtonColor: '#286090'
           allowOutsideClick: true
         }
+        $body = $row.parent()
         $row.remove()
+        if $body.find('tr').length == 0
+          $body.parent('.table')
+            .hide().after('<p class="no-leagues">Please create a league to get started.</p>')
+        
+
         false
       ).fail (error) ->
         swal 'Oops...', 'Something went wrong. Could not delete the league :(', 'error'
