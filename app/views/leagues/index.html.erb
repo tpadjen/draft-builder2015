@@ -25,10 +25,7 @@
             <td><%= league.size %></td>
             <td><%= league.roster_style.titleize %></td>
             <td><%= link_to 'Edit', edit_league_path(league), {class: "btn btn-warning"} %></td>
-            <td><%= link_to 'Delete', league, 
-              method: :delete,
-              data: { confirm: "Are you sure you want to delete #{league.name}? All of its teams and draft picks will be lost!" },
-              class: "btn btn-danger" %></td>
+            <td><%= link_to 'Delete', league, class: "btn btn-danger delete", data: {name: league.name} %></td>
           </tr>
         <% end %>
       </tbody>

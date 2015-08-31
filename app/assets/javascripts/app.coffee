@@ -162,6 +162,41 @@ ready = ->
   $('#undo-form').submit ->
     postUndoForm()
     return false
+
+  $('.leagues.index a.delete').click (e) ->
+    e.preventDefault()
+    $this = $(this)
+    href = $this.attr('href')
+    name = $this.data('name')
+    $row = $this.closest('tr')
+    swal {
+      title: 'Are you sure you want to delete ' + name + '?'
+      text: 'You will lose all of this league\'s teams and draft picks!'
+      type: 'warning'
+      showCancelButton: true
+      confirmButtonColor: '#DD6B55'
+      confirmButtonText: 'Yes, delete it!'
+      cancelButtonText: 'No'
+      closeOnConfirm: false
+      showLoaderOnConfirm: true
+    }, (isConfirm) ->
+      if isConfirm
+        $.post(href + '.json', { _method: 'delete' }, null, 'script').done((data) ->
+          swal {
+            title: 'Deleted ' + name + '!'
+            type: 'success'
+            confirmButtonColor: '#286090'
+            allowOutsideClick: true
+          }
+          $row.remove()
+          false
+        ).fail (error) ->
+          swal 'Oops...', 'Something went wrong. Could not delete the league :(', 'error'
+          false
+      else
+        return false
+      return
+
   return
 
 $(document).ready(ready)
