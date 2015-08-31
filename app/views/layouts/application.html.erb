@@ -11,6 +11,9 @@
 		<div class="navbar-header">
 			<span class="navbar-brand">|</span>
 		</div>
+		<% if action_name != 'new' %>
+			<%= link_to 'New League', new_league_path, {class: "btn btn-primary navbar-btn"} %>
+		<% end %>
 	</div>
 </nav>
 
