@@ -7,10 +7,16 @@ class PositionsController < LeaguesViewController
 
     if params[:position]
       @position = params[:position].upcase
-      @players = NflPlayer.where(position: @position).includes(:fantasy_team).includes(:nfl_team).order(:adp_ffc)
+      @players = NflPlayer.where(position: @position)
+                  .includes(:nfl_team)
+                  .includes(:leagues)
+                  .order(:adp_ffc)
     else
       @position = 'All'
-      @players = NflPlayer.all.includes(:fantasy_team).includes(:nfl_team).order(:adp_ffc)
+      @players = NflPlayer.all
+                  .includes(:nfl_team)
+                  .includes(:leagues)
+                  .order(:adp_ffc)
     end
 
     if params[:rank] && params[:rank] == 'points'

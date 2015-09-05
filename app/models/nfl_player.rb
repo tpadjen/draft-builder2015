@@ -1,7 +1,8 @@
 class NflPlayer < ActiveRecord::Base
   belongs_to :nfl_team
-  has_one :draft_pick
-  has_one :fantasy_team, through: :draft_pick
+  has_many :draft_picks
+  has_many :fantasy_teams, through: :draft_picks
+  has_many :leagues, through: :draft_picks
 
   VALID_POSITIONS = ['QB', 'WR', 'RB', 'TE', 'DEF', 'K']
 
@@ -15,8 +16,12 @@ class NflPlayer < ActiveRecord::Base
   	VALID_POSITIONS.include?(pos.upcase)
   end
 
-  def picked?
-  	fantasy_team != nil
+  def picked?(league)
+  	leagues.include?(league)
+  end
+
+  def fantasy_team(league)
+    fantasy_teams.where(league: league).first
   end
 
 end

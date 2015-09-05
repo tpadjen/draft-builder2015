@@ -40,8 +40,8 @@ Rails.application.configure do
   # config.action_view.raise_on_missing_translations = true
 
   config.after_initialize do
-    Bullet.enable = true
-    Bullet.alert = true
-    Bullet.add_footer = true
+    Bullet.enable = false
+    Bullet.alert = false
+    Bullet.add_footer = false
   end
 end

@@ -7,7 +7,7 @@ class DraftPicksController < LeaguesViewController
       render json: "Draft over", status: 401
     else
     	if params[:player] && player = NflPlayer.find(params[:player][:id].to_i)
-    		if @current_pick.update(nfl_player: player)
+    		if @current_pick.update(nfl_player: player, league_id: params[:league_id])
     			render json: {
     				current_pick: @current_pick.to_json, 
     				next_pick: current_pick.to_json 

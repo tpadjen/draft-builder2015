@@ -37,7 +37,7 @@ class LeaguesViewController < ApplicationController
     end
 
   	def set_draft_picks
-  		@draft_picks = @league.draft_picks.includes(:fantasy_team).includes(:nfl_player).order(:number)
+      @draft_picks = @league.draft_picks.includes([:fantasy_team, :nfl_player]).order(:number)
   		@current_pick = current_pick
   	end
 

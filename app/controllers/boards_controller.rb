@@ -1,9 +1,9 @@
 class BoardsController < LeaguesViewController
-  around_action :skip_bullet, only:[:draft]
+  around_action :skip_bullet
 
   def draft
   	@players = @league.draft_picks.selected
-                  .includes(nfl_player: :fantasy_team)
+                  .includes(nfl_player: :fantasy_teams)
                   .order(:number)
                   .map(&:nfl_player)
     @rounds = @players.each_slice(@league.size)
@@ -39,7 +39,7 @@ class BoardsController < LeaguesViewController
   private
 
     def load_players
-      NflPlayer.all.includes(:fantasy_team)
+      NflPlayer.all.includes(:leagues)
     end
 
     def set_render
