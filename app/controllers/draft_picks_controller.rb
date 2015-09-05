@@ -40,7 +40,7 @@ class DraftPicksController < LeaguesViewController
             ref_owner = URI.decode(request.referer.partition('/team/').last)
             if owner.downcase == ref_owner.downcase # on the changed page
               html = {}
-              fantasy_team = FantasyTeam.from_owner(owner)
+              fantasy_team = FantasyTeam.from_owner(owner, @league)
               @picks, @starters, @bench = fantasy_team.roster
                
               with_format :html do
