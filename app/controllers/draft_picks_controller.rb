@@ -4,15 +4,23 @@ class DraftPicksController < LeaguesViewController
 
   def pick
     if !@current_pick
-      render json: "Draft over", status: 401
+      render json: { draft_finished: true }, status: 401
     else
     	if params[:player] && player = NflPlayer.find(params[:player][:id].to_i)
     		if @current_pick.update(nfl_player: player, league_id: params[:league_id])
-    			render json: {
-    				current_pick: @current_pick.to_json, 
-    				next_pick: current_pick.to_json,
-            limited_positions: current_pick.fantasy_team.limited_positions
-          }, status: 200
+          if !current_pick
+            render json: { 
+              current_pick: @current_pick.to_json,
+              draft_finished: true,
+              limited_positions: NflPlayer::VALID_POSITIONS
+            }, status: 200
+          else
+            render json: {
+      				current_pick: @current_pick.to_json,
+      				next_pick: current_pick.to_json,
+              limited_positions: current_pick.limited_positions
+            }, status: 200
+          end
     		else
     			render json: @current_pick.errors, status: :unprocessable_entity
     		end

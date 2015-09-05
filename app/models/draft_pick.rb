@@ -41,9 +41,20 @@ class DraftPick < ActiveRecord::Base
     }
   end
 
+  def limited_positions
+    fantasy_team ? fantasy_team.limited_positions : NflPlayer::VALID_POSITIONS
+  end
+
   def roster_is_valid
-    if nfl_player && fantasy_team && fantasy_team.at_limit?(nfl_player.position)
-      errors.add(:roster, " has reached the limit of #{nfl_player.position}s" )
+    if nfl_player && fantasy_team 
+      if fantasy_team.at_limit?(nfl_player.position)
+        errors.add(:roster, " has reached the limit of #{nfl_player.position}s")
+      else
+        needs = fantasy_team.absolute_position_needs
+        if needs.count > 0 && !needs.include?(nfl_player.position) 
+          errors.add(:roster, " only has room for [#{needs.join(', ')}]")
+        end
+      end
     end
   end
 end

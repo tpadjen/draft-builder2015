@@ -75,13 +75,14 @@ pickPlayer = (button) ->
   player = player: id: $this.data('player')
   $.post('/l/' + getLeague() + '/pick.json', player).done((data) ->
     console.log 'Successfully picked'
+    # console.log data
     showAlert('alert-info', data.current_pick.owner + ' picked ' + data.current_pick.player)
     $this.addClass('picked').removeClass 'unpicked'
     ownerTD = $this.find('td.owner')
     if ownerTD
       ownerTD.text(data.current_pick.owner)
-    updateCurrentPick data.next_pick
-    updateSideBar data.current_pick
+    updateCurrentPick(data.next_pick, data.draft_finished)
+    updateSideBar(data.current_pick, data.draft_finished)
     updateLimitedPositions(data.limited_positions)
     showUndo()
     $this.off('click')
@@ -99,14 +100,22 @@ pickPlayer = (button) ->
     return
   return
 
-updateCurrentPick = (currentPick) ->
+updateCurrentPick = (currentPick, draft_finished) ->
   pick = $('.current-pick')
-  pick.find('.decimal').text currentPick.decimal
-  pick.find('.owner').text currentPick.owner
-  pick.find('.picks-left').text currentPick.picks_left
+  console.log 'Draft Finished'
+  console.log draft_finished == null
+
+  if draft_finished
+    pick.html 'Draft Finished!'
+  else
+    pick.html 'Current Pick: <span class="decimal">' + 
+      currentPick.decimal + '</span> <span class="owner">' + 
+      currentPick.owner + '</span> | Picks Left: <span class="picks-left">' + 
+      currentPick.picks_left + '</span>'
+
   return
 
-updateSideBar = (currentPick) ->
+updateSideBar = (currentPick, draft_finished) ->
   list = $('.sidebar .draft-order')
   button = list.find("[data-pick-decimal='" + currentPick.decimal + "']")
   button.html("<span class=\"pick-number\">" + currentPick.decimal + "</span>" + currentPick.player + "<span class=\"owner\">" + currentPick.owner + "</span>")
@@ -115,7 +124,9 @@ updateSideBar = (currentPick) ->
   b = button.prev('button').prev('button').prev('button').prev('button').prev('button').prev('button').get(0)
   if b
     b.scrollIntoView()
-  nextInDOM('button.unselected', button).toggleClass('current')
+  if draft_finished == null # draft not finished
+    nextInDOM('button.unselected', button).toggleClass('current')
+  
   return
 
 undoSideBar = (currentPick) ->
@@ -194,7 +205,7 @@ postUndoForm = () ->
     if ownerTD
       ownerTD.text('')
 
-    updateCurrentPick data.prev_pick
+    updateCurrentPick(data.prev_pick, null)
     undoSideBar data.prev_pick
     updateLimitedPositions(data.limited_positions)
     hideUndo(data.prev_pick)

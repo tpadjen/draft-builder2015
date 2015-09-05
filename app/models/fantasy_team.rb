@@ -23,6 +23,14 @@ class FantasyTeam < ActiveRecord::Base
 				'DEF'   =>  9,
 				'K'     =>  9
 			},
+			minimums: {
+				'QB' 		=>  1,
+				'RB' 		=>  2,
+				'WR' 		=>  2,
+				'TE'    =>  1,
+				'DEF'   =>  1,
+				'K'     =>  1
+			}
 		},
 		beavers: {
 			size: 16,
@@ -35,6 +43,14 @@ class FantasyTeam < ActiveRecord::Base
 				'K' 	=>  1
 			},
 			limits: {
+				'QB' 		=>  2,
+				'RB' 		=>  3,
+				'WR' 		=>  3,
+				'TE'    =>  2,
+				'DEF'   =>  2,
+				'K'     =>  2
+			},
+			minimums: {
 				'QB' 		=>  2,
 				'RB' 		=>  3,
 				'WR' 		=>  3,
@@ -75,7 +91,29 @@ class FantasyTeam < ActiveRecord::Base
 		roster_info[:size] - nfl_players.count
 	end
 
+	def has_minimum?(pos, players = nil)
+		players ||= nfl_players.where(position: pos)
+		min = roster_info[:minimums][pos]
+		players.count	>= min
+	end
+
+	def absolute_position_needs
+		players = nfl_players.all.to_a
+		needs = NflPlayer::VALID_POSITIONS.select do |pos| 
+			!has_minimum?(pos, players.select {|player| player.position == pos })
+		end
+		if needs.map {|pos| roster_info[:minimums][pos] }.reduce(:+) == picks_left
+			needs
+		else
+			[]
+		end
+	end
+
 	def limited_positions
+		if absolute_position_needs.count > 0
+			return NflPlayer::VALID_POSITIONS.select {|pos| !absolute_position_needs.include?(pos) }
+		end
+
 		players = nfl_players.all.to_a
 		NflPlayer::VALID_POSITIONS.select do |pos| 
 			at_limit?(pos, players.select {|player| player.position == pos })

@@ -39,7 +39,7 @@ class LeaguesViewController < ApplicationController
   	def set_draft_picks
       @draft_picks = @league.draft_picks.includes([:fantasy_team, :nfl_player]).order(:number)
   		@current_pick = current_pick
-      @limited_positions = @current_pick.fantasy_team.limited_positions
+      @limited_positions = @current_pick ? @current_pick.limited_positions : NflPlayer::VALID_POSITIONS
   	end
 
   	def set_positions
