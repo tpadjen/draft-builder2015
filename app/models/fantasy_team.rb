@@ -1,7 +1,7 @@
 class FantasyTeam < ActiveRecord::Base
 	has_many :draft_picks
-	has_one :league
 	has_many :nfl_players, through: :draft_picks
+	belongs_to :league
 
 	validates :owner, 
 		uniqueness: {
@@ -10,12 +10,13 @@ class FantasyTeam < ActiveRecord::Base
 		}, 
 		presence: true
 
-	def self.from_owner(owner)
-		where('lower(owner) = ?', owner.downcase).first
+	def self.from_owner(owner, league)
+		where(league: league).where('lower(owner) = ?', owner.downcase).first
 	end
 
 	def roster
-		HymmRoster.new(draft_picks).build
+		roster_class = "FantasyTeam::#{league.roster_style.titleize}Roster".constantize
+		roster_class.build(draft_picks)
 	end
 
 end
