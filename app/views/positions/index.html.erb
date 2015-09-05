@@ -9,6 +9,7 @@
 					<th class="<%= "highlighted" if @adp_espn %>"><a href="?rank=adp_espn">ESPN ADP</a></th>
 					<th>Player</th>
 					<th>NFL Team</th>
+					<th>Bye</th>
 					<!-- <th>ADP</th> -->
 					<th class="<%= "highlighted" if @points %>"><a href="?rank=points">Projected Points</a></th>
 					<th>Owner</th>
@@ -25,6 +26,7 @@
 							<td><%= player.adp_espn %></td>
 							<td><%= player.name %></td>
 							<td><%= player.nfl_team.shortname %></td>
+							<td><%= player.nfl_team.bye %></td>
 							<!-- <td><%= player.adp_ffc %></td> -->
 							<td><%= player.projected_points %></td>
 							<td class="owner"><%= player.fantasy_team(@league).owner %></td>
@@ -39,6 +41,7 @@
 							<td><%= player.adp_espn %></td>
 							<td><%= player.name %></td>
 							<td><%= player.nfl_team.shortname %></td>
+							<td><%= player.nfl_team.bye %></td>
 							<!-- <td><%= player.adp_ffc %></td> -->
 							<td><%= player.projected_points %></td>
 							<td class="owner"></td>

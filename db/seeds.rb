@@ -12,7 +12,12 @@ nfl_teams = CSV.read('db/nfl_teams.csv')
 
 puts "\nLoading NFL Teams"
 nfl_teams.each do |team|
-	t = NflTeam.find_or_create_by(city: team[0], nickname: team[1], shortname: team[2])
+	t = NflTeam.find_or_create_by(
+		city: team[0], 
+		nickname: team[1], 
+		shortname: team[2], 
+		bye: team[3].to_i
+	)
 	# puts "Loading the #{t.nickname}"
 end
 

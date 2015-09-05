@@ -1,33 +1,33 @@
-Arizona,Cardinals,ARI
-Atlanta,Falcons,ATL
-Cincinatti,Bengals,CIN
-Chicago,Bears,CHI
-New England,Patriots,NE
-Green Bay,Packers,GB
-Carolina,Panthers,CAR
-New Orleans,Saints,NO
-Miami,Dolphins,MIA
-Jacksonville,Jaguars,JAC
-New York,Giants,NYG
-New York,Jets,NYJ
-Pittsburgh,Steelers,PIT
-Cleveland,Browns,CLE
-Minnesota,Vikings,MIN
-Detroit,Lions,DET
-Seattle,Seahawks,SEA
-San Francisco,49ers,SF
-San Diego,Chargers,SD
-Denver,Broncos,DEN
-Tennessee,Titans,TEN
-Indianapolis,Colts,IND
-Houston,Texans,HOU
-Dallas,Cowboys,DAL
-Saint Louis,Rams,STL
-Baltimore,Ravens,BAL
-Oakland,Raiders,OAK
-Tampa Bay,Buccaneers,TB
-Philadelphia,Eagles,PHI
-Buffalo,Bills,BUF
-Kansas City,Chiefs,KC
-Washington,Redskins,WAS
-Free Agent,,FA
+Arizona,Cardinals,ARI,9
+Atlanta,Falcons,ATL,10
+Cincinatti,Bengals,CIN,7
+Chicago,Bears,CHI,7
+New England,Patriots,NE,4
+Green Bay,Packers,GB,7
+Carolina,Panthers,CAR,5
+New Orleans,Saints,NO,11
+Miami,Dolphins,MIA,5
+Jacksonville,Jaguars,JAC,8
+New York,Giants,NYG,11
+New York,Jets,NYJ,5
+Pittsburgh,Steelers,PIT,11
+Cleveland,Browns,CLE,11
+Minnesota,Vikings,MIN,5
+Detroit,Lions,DET,9
+Seattle,Seahawks,SEA,9
+San Francisco,49ers,SF,10
+San Diego,Chargers,SD,10
+Denver,Broncos,DEN,7
+Tennessee,Titans,TEN,4
+Indianapolis,Colts,IND,10
+Houston,Texans,HOU,9
+Dallas,Cowboys,DAL,6
+Saint Louis,Rams,STL,6
+Baltimore,Ravens,BAL,9
+Oakland,Raiders,OAK,6
+Tampa Bay,Buccaneers,TB,6
+Philadelphia,Eagles,PHI,8
+Buffalo,Bills,BUF,8
+Kansas City,Chiefs,KC,9
+Washington,Redskins,WAS,8
+Free Agent,,FA,-1

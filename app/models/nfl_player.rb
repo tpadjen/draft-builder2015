@@ -24,4 +24,8 @@ class NflPlayer < ActiveRecord::Base
     fantasy_teams.where(league: league).first
   end
 
+  def summary
+    "#{name}\n#{position}\n#{nfl_team.shortname}\nbye: #{nfl_team.bye}"
+  end
+
 end

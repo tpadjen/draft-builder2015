@@ -42,7 +42,12 @@
 						<%= player.position.downcase %> 
 						<%= 'limited' if @limited_positions.include?(player.position) %> 
 						<%= player.picked?(@league) ? 'picked' : 'unpicked' %>" 
-						data-player="<%= player.id %>"><%= player.name %></td>
+						data-player="<%= player.id %>"
+						data-toggle="tooltip" 
+						data-placement="top" 
+						data-container="body" 
+						data-delay='{"show":"1500", "hide":"100"}' 
+						title="<%= player.summary %>"><%= player.name %></td>
 					<% end %>
 					<% if round.count < @league.size && (@klass != 'draft' || klass == 'even') %>
 						<% if index >= @league.size %>
