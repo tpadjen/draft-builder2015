@@ -221,7 +221,6 @@ postUndoForm = () ->
 ready = ->
   initialScroll()
   fadeOutAlert()
-  $('[data-toggle="tooltip"]').tooltip()
   $('.player.unpicked').click ->
     pickPlayer(this)
     return

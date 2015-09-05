@@ -42,12 +42,13 @@
 						<%= player.position.downcase %> 
 						<%= 'limited' if @limited_positions.include?(player.position) %> 
 						<%= player.picked?(@league) ? 'picked' : 'unpicked' %>" 
-						data-player="<%= player.id %>"
-						data-toggle="tooltip" 
-						data-placement="top" 
-						data-container="body" 
-						data-delay='{"show":"1500", "hide":"100"}' 
-						title="<%= player.summary %>"><%= player.name %></td>
+						data-player="<%= player.id %>">
+							<div class="info">
+								<span class="team"><%= player.nfl_team.shortname %></span>
+								<span class="bye"><%= player.nfl_team.bye %></span>
+							</div>
+							<div class="name"><%= player.name %></div>
+						</td>
 					<% end %>
 					<% if round.count < @league.size && (@klass != 'draft' || klass == 'even') %>
 						<% if index >= @league.size %>

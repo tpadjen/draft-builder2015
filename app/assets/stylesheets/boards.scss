@@ -13,7 +13,7 @@
 
 	td, th {
 		text-align: center;
-		vertical-align: middle !important;
+		// vertical-align: middle !important;
 	}
 
 	table tr, table td, table, table th {
@@ -26,5 +26,74 @@
 
 	td.arrow {
 		font-size: 1.75em;
+	}
+
+	.player {
+		position: relative;
+
+		padding: 0;
+		vertical-align: middle !important;
+
+		&.picked {
+			.info .bye, .info .team {
+				color: #000;
+				background-color: rgba(255, 255, 255, 0.7);
+			}
+		}
+
+		&:hover {
+			.info {
+				.bye, .team {
+					visibility: visible;
+				}
+			}
+		}
+
+		.info {
+			position: absolute;
+			top: 0px;
+			width: 104px;
+			z-index: 100;
+
+			.bye, .team {
+				z-index: 100;
+				top: 0px;
+				background-color: rgba(188, 188, 188, 0.8);
+				color: black;
+				padding: 0;
+				margin: 0;
+				font-size: 0.7em;
+				visibility: hidden;
+				padding: 3px 4px;
+				width: 28px;
+				text-align: center;
+			}
+
+			.bye {
+				position: absolute;
+				right: 0px;
+				border-radius: 0 0 0 4px;
+			}
+
+			.team {
+				position: absolute;
+				left: 0px;
+				border-radius: 0 0 4px 0;
+			}
+		}
+
+		.name {
+			margin-top: 0;
+			margin-bottom: 0;
+			padding: 14px;
+			clear: both;
+			display: table-cell;
+	    vertical-align:middle;
+	    text-align: center;
+	    min-width: 104px;
+	    width: 104px;
+	    max-width: 104px;
+	    overflow: hidden;
+		}
 	}
 }
