@@ -61,10 +61,18 @@ class FantasyTeam < ActiveRecord::Base
 		Roster.build(ROSTER_INFO[league.roster_style.to_sym][:starters], draft_picks)
 	end
 
+	def roster_info
+		ROSTER_INFO[league.roster_style.to_sym]
+	end
+
 	def at_limit?(pos, players = nil)
 		players ||= nfl_players.where(position: pos)
-		limit = ROSTER_INFO[league.roster_style.to_sym][:limits][pos]
+		limit = roster_info[:limits][pos]
 		players.count	>= limit
+	end
+
+	def picks_left
+		roster_info[:size] - nfl_players.count
 	end
 
 	def limited_positions

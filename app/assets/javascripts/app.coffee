@@ -103,6 +103,7 @@ updateCurrentPick = (currentPick) ->
   pick = $('.current-pick')
   pick.find('.decimal').text currentPick.decimal
   pick.find('.owner').text currentPick.owner
+  pick.find('.picks-left').text currentPick.picks_left
   return
 
 updateSideBar = (currentPick) ->

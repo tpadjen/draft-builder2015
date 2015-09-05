@@ -36,7 +36,8 @@ class DraftPick < ActiveRecord::Base
       player: nfl_player ? nfl_player.name : nil,
       player_id: nfl_player ? nfl_player.id : nil,
       number: number,
-      decimal: to_d
+      decimal: to_d,
+      picks_left: fantasy_team.picks_left
     }
   end
 

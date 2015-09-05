@@ -28,6 +28,7 @@ class DraftPicksController < LeaguesViewController
       prev_team = pick.fantasy_team
       owner = pick.fantasy_team.owner
       prev_pick = pick.to_json
+      prev_pick[:picks_left] = (prev_pick[:picks_left].to_i + 1).to_s
       pick.update(nfl_player: nil)
       message = "#{owner}'s selection of #{player.name} has been undone."
 
