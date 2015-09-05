@@ -133,6 +133,12 @@ button.undo:focus {
 	.player:hover {
 		background-color: #fafafa;
 		cursor: pointer;
+
+		&.picked {
+			background-color: #333;
+			color: #ccc;
+			cursor: default;
+		}
 	}
 }
 
