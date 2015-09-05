@@ -1,15 +1,8 @@
 class FantasyTeam::Roster
-	
-	@@starting_spots = {
-		'QB'  =>  1,
-		'RB'  =>  2,
-		'WR'  =>  2,
-		'TE'  =>  1,
-		'DEF' =>  1,
-		'K'   =>  1
-	}
 
-	def self.build(draft_picks)
+	def self.build(starting_spots, draft_picks)
+		@@starting_spots = starting_spots
+
 		starters = {}
 		@@starting_spots.keys.each {|pos| starters[pos] = [] }
 

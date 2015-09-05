@@ -130,7 +130,7 @@ button.undo:focus {
 // }
 
 .adp, .positions, .points {
-	.player:hover {
+	.player:hover:not(.limited) {
 		background-color: #fafafa;
 		cursor: pointer;
 
@@ -168,4 +168,10 @@ button.undo:focus {
 		background-color: #333;
 		cursor: default;
 	}
+}
+
+.player.limited:not(.picked) {
+	opacity: 0.9;
+	cursor: default;
+	text-decoration: line-through;
 }

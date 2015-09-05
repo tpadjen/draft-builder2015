@@ -10,7 +10,8 @@ class DraftPicksController < LeaguesViewController
     		if @current_pick.update(nfl_player: player, league_id: params[:league_id])
     			render json: {
     				current_pick: @current_pick.to_json, 
-    				next_pick: current_pick.to_json 
+    				next_pick: current_pick.to_json,
+            limited_positions: current_pick.fantasy_team.limited_positions
           }, status: 200
     		else
     			render json: @current_pick.errors, status: :unprocessable_entity
@@ -24,6 +25,7 @@ class DraftPicksController < LeaguesViewController
     if @league.draft_picks.order(:number).first.selected?
       pick = @league.draft_picks.selected.where.not(keeper: true).order(:number).last
       player = pick.nfl_player
+      prev_team = pick.fantasy_team
       owner = pick.fantasy_team.owner
       prev_pick = pick.to_json
       pick.update(nfl_player: nil)
@@ -54,7 +56,8 @@ class DraftPicksController < LeaguesViewController
             html: html,
             message: message,
             current_pick: @current_pick.to_json, 
-            prev_pick: prev_pick
+            prev_pick: prev_pick,
+            limited_positions: prev_team.limited_positions
           }, status: 200 
         end
       end

@@ -3,6 +3,8 @@ class DraftPick < ActiveRecord::Base
   belongs_to :nfl_player
   belongs_to :fantasy_team
 
+  validate :roster_is_valid
+
   def self.unselected
   	where(nfl_player: nil).order(:number)
   end
@@ -36,5 +38,11 @@ class DraftPick < ActiveRecord::Base
       number: number,
       decimal: to_d
     }
+  end
+
+  def roster_is_valid
+    if nfl_player && fantasy_team && fantasy_team.at_limit?(nfl_player.position)
+      errors.add(:roster, " has reached the limit of #{nfl_player.position}s" )
+    end
   end
 end

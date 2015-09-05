@@ -69,6 +69,9 @@ getLeague = () ->
 
 pickPlayer = (button) ->
   $this = $(button)
+  if $this.hasClass('limited')
+    return
+  
   player = player: id: $this.data('player')
   $.post('/l/' + getLeague() + '/pick.json', player).done((data) ->
     console.log 'Successfully picked'
@@ -79,13 +82,20 @@ pickPlayer = (button) ->
       ownerTD.text(data.current_pick.owner)
     updateCurrentPick data.next_pick
     updateSideBar data.current_pick
+    updateLimitedPositions(data.limited_positions)
     showUndo()
     $this.off('click')
     return
   ).fail (error) ->
-    showAlert('alert-danger', "Error: could not complete pick.")
     console.log 'Error picking'
-    console.log error
+    console.log error.responseJSON
+    message = "Error: could not complete pick."
+    if error.responseJSON
+      word = Object.keys(error.responseJSON)[0]
+      message += " " + word.charAt(0).toUpperCase() + word.slice(1);
+      message += " " + error.responseJSON[word]
+
+    showAlert('alert-danger', message)
     return
   return
 
@@ -157,6 +167,11 @@ updateTeamPageOnUndo = (html) ->
   
   return
 
+updateLimitedPositions = (positions) ->
+  $('.player.limited').removeClass('limited')
+  positions.forEach (pos) ->
+    $('.player.' + pos.toLowerCase()).addClass 'limited'
+    return
 
 postUndoForm = () ->
   $.post('/l/' + getLeague() + '/pick/undo.json').done((data) ->
@@ -180,6 +195,7 @@ postUndoForm = () ->
 
     updateCurrentPick data.prev_pick
     undoSideBar data.prev_pick
+    updateLimitedPositions(data.limited_positions)
     hideUndo(data.prev_pick)
     return
   ).fail (error) ->
