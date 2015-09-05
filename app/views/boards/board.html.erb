@@ -57,8 +57,8 @@
 					<td><%= index + 1 %></td>
 				</tr>
 			<% end %>
-			<% if @rounds.count < 16 %>
-				<% ((@rounds.count)..15).each do |index| %>
+			<% if @rounds.count < @league.roster_size %>
+				<% ((@rounds.count)..(@league.roster_size-1)).each do |index| %>
 					<% if index % 2 == 1 %>
 						<% symbol = '❮' %>
 						<% klass = 'odd' %>
