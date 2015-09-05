@@ -32,6 +32,11 @@
 				<tr class=<%= klass %>>
 					<td><%= index + 1 %></td>
 					<td class="arrow"><%= symbol %></td>
+					<% if round.count < @league.size && (@klass == 'draft' && klass == 'odd') %>
+						<% (@league.size - round.count).times do |i| %>
+							<td></td>
+						<% end %>
+					<% end %>
 					<% round.each do |player| %>
 						<td class="player 
 						<%= player.position.downcase %> 
@@ -39,8 +44,8 @@
 						<%= player.picked?(@league) ? 'picked' : 'unpicked' %>" 
 						data-player="<%= player.id %>"><%= player.name %></td>
 					<% end %>
-					<% if round.count < @league.size %>
-						<% if index >= 16 %>
+					<% if round.count < @league.size && (@klass != 'draft' || klass == 'even') %>
+						<% if index >= @league.size %>
 							<td colspan="<%= @league.size - round.count %>"></td>	
 						<% else %>
 							<% (@league.size - round.count).times do |i| %>

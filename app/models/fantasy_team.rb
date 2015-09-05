@@ -3,64 +3,6 @@ class FantasyTeam < ActiveRecord::Base
 	has_many :nfl_players, through: :draft_picks
 	belongs_to :league
 
-	ROSTER_INFO = {
-		hymm: {
-			size: 16,
-			starters: {
-				'QB' 		=>  1,
-				'RB' 		=>  1,
-				'WR' 		=>  2,
-				'FLEX|RB|WR' =>  1,
-				'TE'    =>  1,
-				'DEF'   =>  1,
-				'K'     =>  1
-			},
-			limits: {
-				'QB' 		=>  9,
-				'RB' 		=>  10,
-				'WR' 		=>  11,
-				'TE'    =>  9,
-				'DEF'   =>  9,
-				'K'     =>  9
-			},
-			minimums: {
-				'QB' 		=>  1,
-				'RB' 		=>  2,
-				'WR' 		=>  2,
-				'TE'    =>  1,
-				'DEF'   =>  1,
-				'K'     =>  1
-			}
-		},
-		beavers: {
-			size: 16,
-			starters: {
-				'QB' 	=>  1,
-				'RB' 	=>  2,
-				'WR' 	=>  2,
-				'TE' 	=>  1,
-				'DEF' =>  1,
-				'K' 	=>  1
-			},
-			limits: {
-				'QB' 		=>  2,
-				'RB' 		=>  3,
-				'WR' 		=>  3,
-				'TE'    =>  2,
-				'DEF'   =>  2,
-				'K'     =>  2
-			},
-			minimums: {
-				'QB' 		=>  2,
-				'RB' 		=>  3,
-				'WR' 		=>  3,
-				'TE'    =>  2,
-				'DEF'   =>  2,
-				'K'     =>  2
-			}
-		}
-	}
-
 	validates :owner, 
 		uniqueness: {
 			scope: :league_id, 
@@ -74,26 +16,22 @@ class FantasyTeam < ActiveRecord::Base
 
 	def roster
 		# roster_class = "FantasyTeam::#{league.roster_style.titleize}Roster".constantize
-		Roster.build(ROSTER_INFO[league.roster_style.to_sym][:starters], draft_picks)
-	end
-
-	def roster_info
-		ROSTER_INFO[league.roster_style.to_sym]
+		Roster.build(league.roster_info(:starters), draft_picks)
 	end
 
 	def at_limit?(pos, players = nil)
 		players ||= nfl_players.where(position: pos)
-		limit = roster_info[:limits][pos]
+		limit = league.roster_info(:limits)[pos]
 		players.count	>= limit
 	end
 
 	def picks_left
-		roster_info[:size] - nfl_players.count
+		league.roster_size - nfl_players.count
 	end
 
 	def has_minimum?(pos, players = nil)
 		players ||= nfl_players.where(position: pos)
-		min = roster_info[:minimums][pos]
+		min = league.roster_info(:minimums)[pos]
 		players.count	>= min
 	end
 
@@ -102,7 +40,7 @@ class FantasyTeam < ActiveRecord::Base
 		needs = NflPlayer::VALID_POSITIONS.select do |pos| 
 			!has_minimum?(pos, players.select {|player| player.position == pos })
 		end
-		if needs.map {|pos| roster_info[:minimums][pos] }.reduce(:+) == picks_left
+		if needs.map {|pos| league.roster_info(:minimums)[pos] }.reduce(:+) == picks_left
 			needs
 		else
 			[]

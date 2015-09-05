@@ -38,7 +38,7 @@ class LeaguesController < ApplicationController
           fantasy_team = @league.fantasy_teams.create(owner: "Team #{i+1}", pick_number: i+1)
           picks = []
 
-          (1..16).each do |round|
+          (1..@league.roster_size).each do |round|
             offset = round % 2 == 1 ? i + 1: @league.size - i
             pick = (round-1)*@league.size + offset
             @league.draft_picks.create(number: pick, fantasy_team: fantasy_team)

@@ -15,4 +15,72 @@ class League < ActiveRecord::Base
 	def year
 		created_at.year
 	end
+
+	ROSTER_INFO = {
+		hymm: {
+			size: 16,
+			starters: {
+				'QB' 		=>  1,
+				'RB' 		=>  1,
+				'WR' 		=>  2,
+				'FLEX|RB|WR' =>  1,
+				'TE'    =>  1,
+				'DEF'   =>  1,
+				'K'     =>  1
+			},
+			limits: {
+				'QB' 		=>  9,
+				'RB' 		=>  10,
+				'WR' 		=>  11,
+				'TE'    =>  9,
+				'DEF'   =>  9,
+				'K'     =>  9
+			},
+			minimums: {
+				'QB' 		=>  1,
+				'RB' 		=>  2,
+				'WR' 		=>  2,
+				'TE'    =>  1,
+				'DEF'   =>  1,
+				'K'     =>  1
+			}
+		},
+		beavers: {
+			size: 14,
+			starters: {
+				'QB' 	=>  1,
+				'RB' 	=>  2,
+				'WR' 	=>  2,
+				'TE' 	=>  1,
+				'DEF' =>  1,
+				'K' 	=>  1
+			},
+			limits: {
+				'QB' 		=>  2,
+				'RB' 		=>  3,
+				'WR' 		=>  3,
+				'TE'    =>  2,
+				'DEF'   =>  2,
+				'K'     =>  2
+			},
+			minimums: {
+				'QB' 		=>  2,
+				'RB' 		=>  3,
+				'WR' 		=>  3,
+				'TE'    =>  2,
+				'DEF'   =>  2,
+				'K'     =>  2
+			}
+		}
+	}
+
+	def roster_info(key)
+		ROSTER_INFO[roster_style.to_sym][key]	
+	end
+
+	def roster_size
+		roster_info :size
+	end
+
+
 end
