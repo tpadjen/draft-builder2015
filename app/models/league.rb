@@ -2,7 +2,7 @@ class League < ActiveRecord::Base
 	has_many :fantasy_teams, dependent: :destroy
 	has_many :draft_picks, dependent: :destroy
 
-	enum roster_style: [:hymm, :beavers]
+	enum roster_style: [:hymm, :beavers, :if_it_bleeds_you_can_kill_it]
 
 	validates :size, presence: true, 
 		numericality: {only_integer: true, greater_than_or_equal_to: 2}
@@ -70,6 +70,34 @@ class League < ActiveRecord::Base
 				'TE'    =>  2,
 				'DEF'   =>  2,
 				'K'     =>  2
+			}
+		},
+		if_it_bleeds_you_can_kill_it: {
+			size: 16,
+			starters: {
+				'QB' 		=>  1,
+				'RB' 		=>  2,
+				'WR' 		=>  2,
+				'TE'    =>  1,
+				'FLEX|RB|WR|TE' =>  1,
+				'DEF'   =>  1,
+				'K'     =>  1
+			},
+			limits: {
+				'QB' 		=>  8,
+				'RB' 		=>  9,
+				'WR' 		=>  10,
+				'TE'    =>  8,
+				'DEF'   =>  8,
+				'K'     =>  7
+			},
+			minimums: {
+				'QB' 		=>  1,
+				'RB' 		=>  2,
+				'WR' 		=>  2,
+				'TE'    =>  1,
+				'DEF'   =>  1,
+				'K'     =>  1
 			}
 		}
 	}
