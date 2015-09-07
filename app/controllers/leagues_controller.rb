@@ -72,8 +72,8 @@ class LeaguesController < ApplicationController
   # DELETE /leagues/1
   # DELETE /leagues/1.json
   def destroy
-    # @league.fantasy_teams.delete_all
-    # @league.draft_picks.delete_all
+    @league.fantasy_teams.delete_all
+    @league.draft_picks.delete_all
     @league.destroy
     respond_to do |format|
       format.html { redirect_to leagues_url, notice: 'League was successfully destroyed.' }

@@ -22,9 +22,12 @@ class PositionsController < LeaguesViewController
     if params[:rank] && params[:rank] == 'points'
       @points = true
       @players = @players.reorder(projected_points: :desc)
-    elsif params[:rank] && params[:rank] == 'adp_espn'
+    elsif params[:rank] && params[:rank] == 'espn'
       @adp_espn = true
       @players = @players.reorder(:adp_espn)
+    elsif params[:rank] && params[:rank] == 'yahoo'
+      @adp_yahoo = true
+      @players = @players.reorder(:adp_yahoo)
     else
       @adp_ffc = true
     end

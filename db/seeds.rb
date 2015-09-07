@@ -95,3 +95,27 @@ end
 NflPlayer.where(adp_espn: nil).each do |player|
 	player.update(adp_espn: 201)
 end
+
+puts "\nLoading ADP data from Yahoo\n\n"
+players = CSV.read('db/adp/yahoo.csv')
+players.each do |player|
+	
+	if player[3] == 'DEF'
+		pl = NflPlayer.where(position: 'DEF').joins(:nfl_team).where(
+			"nfl_teams.shortname" => player[4]).first	
+	else
+		pl = NflPlayer.where(last_name: player[2], position: player[3]).joins(:nfl_team).where(
+			"nfl_teams.shortname" => player[4]).first
+	end
+
+	if !pl
+		p player
+		# p "#{player[1] + " " + player[2]} not found!!!"
+	else
+		pl.update(adp_yahoo: player[0].to_f)
+	end
+end
+
+NflPlayer.where(adp_yahoo: nil).each do |player|
+	player.update(adp_yahoo: 240)
+end

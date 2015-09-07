@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150905185208) do
+ActiveRecord::Schema.define(version: 20150907152426) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -61,6 +61,7 @@ ActiveRecord::Schema.define(version: 20150905185208) do
     t.decimal  "adp_ffc"
     t.decimal  "adp_round"
     t.decimal  "adp_espn"
+    t.decimal  "adp_yahoo"
   end
 
   add_index "nfl_players", ["nfl_team_id"], name: "index_nfl_players_on_nfl_team_id", using: :btree

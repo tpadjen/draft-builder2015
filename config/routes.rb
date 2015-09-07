@@ -5,6 +5,7 @@ Rails.application.routes.draw do
 
     get 'boards/draft' => 'boards#draft', as: :draft_board
     get 'boards/adp_ffc' => 'boards#adp_ffc', as: :ffc_board
+    get 'boards/adp_yahoo' => 'boards#adp_yahoo', as: :yahoo_board
     get 'boards/adp_espn' => 'boards#adp_espn', as: :espn_board
     get 'boards/points' => 'boards#points', as: :points_board
 

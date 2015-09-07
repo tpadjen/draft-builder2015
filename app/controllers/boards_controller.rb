@@ -28,6 +28,14 @@ class BoardsController < LeaguesViewController
     set_render
   end
 
+  def adp_yahoo
+    @players = load_players.order(:adp_yahoo)
+    @rounds = @players.each_slice(@league.size)
+    @klass = 'adp'
+    @board_name = 'Yahoo ADP'
+    set_render
+  end
+
   def points
   	@players = load_players.order(projected_points: :desc)
     @rounds = @players.each_slice(@league.size)

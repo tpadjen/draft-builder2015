@@ -1,17 +1,18 @@
 <div class="positions">
-	<div class="col-md-8 col-md-offset-2">
+	<div class="col-md-10 col-md-offset-1">
 		<h1><%= @position %></h1>
 		<table class="table table-bordered">
 			<thead>
 				<tr>
 					<th>Rank</th>
-					<th class="<%= "highlighted" if @adp_ffc %>"><a href="?rank=adp_ffc">FFC ADP</a></th>
-					<th class="<%= "highlighted" if @adp_espn %>"><a href="?rank=adp_espn">ESPN ADP</a></th>
+					<th class="<%= "highlighted" if @adp_ffc %>"><a href="?rank=ffc">FFC</a></th>
+					<th class="<%= "highlighted" if @adp_yahoo %>"><a href="?rank=yahoo">Yahoo</a></th>
+					<th class="<%= "highlighted" if @adp_espn %>"><a href="?rank=espn">ESPN</a></th>
 					<th>Player</th>
 					<th>NFL Team</th>
 					<th>Bye</th>
 					<!-- <th>ADP</th> -->
-					<th class="<%= "highlighted" if @points %>"><a href="?rank=points">Projected Points</a></th>
+					<th class="<%= "highlighted" if @points %>"><a href="?rank=points">Projected</a></th>
 					<th>Owner</th>
 				</tr>
 			</thead>
@@ -38,6 +39,7 @@
 						data-player="<%= player.id %>">
 							<td><%= player.position_rank %></td>
 							<td><%= player.adp_round %></td>
+							<td><%= player.adp_yahoo.to_i %></td>
 							<td><%= player.adp_espn %></td>
 							<td><%= player.name %></td>
 							<td><%= player.nfl_team.shortname %></td>
