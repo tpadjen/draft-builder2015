@@ -2,10 +2,10 @@ class BoardsController < LeaguesViewController
   around_action :skip_bullet
 
   def draft
-  	@players = @league.draft_picks.selected
-                  .includes(nfl_player: :fantasy_teams)
-                  .order(:number)
-                  .map(&:nfl_player)
+  	@players = @league.draft_picks
+                      .includes(nfl_player: :fantasy_teams)
+                      .order(:number)
+    
     @rounds = @players.each_slice(@league.size)
     @klass = 'draft'
     @board_name = 'Draft'

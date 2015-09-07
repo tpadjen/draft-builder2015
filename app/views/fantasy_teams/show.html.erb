@@ -1,5 +1,8 @@
 <div class="fantasy-teams">
 	<h1><%= @fantasy_team.owner %>'s Team</h1>
+	<% if @fantasy_team.name %>
+		<h2><%= @fantasy_team.name %></h2>
+	<% end %>
 
 	<div class="col-md-5 col-md-offset-1">
 		<h2>Picks</h2>

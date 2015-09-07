@@ -117,6 +117,7 @@ updateCurrentPick = (currentPick, draft_finished) ->
 
 updateSideBar = (currentPick, draft_finished) ->
   list = $('.sidebar .draft-order')
+  console.log "Finding pick " + currentPick.decimal
   button = list.find("[data-pick-decimal='" + currentPick.decimal + "']")
   button.html("<span class=\"pick-number\">" + currentPick.decimal + "</span>" + currentPick.player + "<span class=\"owner\">" + currentPick.owner + "</span>")
   button.removeClass('unselected').addClass('selected').addClass('disabled').removeClass('current')
@@ -124,7 +125,8 @@ updateSideBar = (currentPick, draft_finished) ->
   b = button.prev('button').prev('button').prev('button').prev('button').prev('button').prev('button').get(0)
   if b
     b.scrollIntoView()
-  if draft_finished == null # draft not finished
+
+  if draft_finished == null || typeof draft_finished == 'undefined' # draft not finished
     nextInDOM('button.unselected', button).toggleClass('current')
   
   return

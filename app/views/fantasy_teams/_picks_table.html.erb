@@ -9,7 +9,7 @@
 	<tbody>
 		<% @picks.each_with_index do |pick, i| %>
 			<tr>
-				<td><%= i + 1 %></td>
+				<td class="<%= 'keeper' if pick.keeper %>"><%= i + 1 %></td>
 				<td><%= pick.to_d %></td>
 				<% if pick.selected? %>
 					<td class="<%= pick.nfl_player.position.downcase %>"><%= pick.nfl_player.name %></td>

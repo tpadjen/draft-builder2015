@@ -37,18 +37,25 @@
 							<td></td>
 						<% end %>
 					<% end %>
-					<% round.each do |player| %>
-						<td class="player 
-						<%= player.position.downcase %> 
-						<%= 'limited' if @limited_positions.include?(player.position) %> 
-						<%= player.picked?(@league) ? 'picked' : 'unpicked' %>" 
-						data-player="<%= player.id %>">
-							<div class="info">
-								<span class="team"><%= player.nfl_team.shortname %></span>
-								<span class="bye"><%= player.nfl_team.bye %></span>
-							</div>
-							<div class="name"><%= player.name %></div>
-						</td>
+					<% round.each do |slot| %>
+						<% player = @klass == 'draft' ? slot.nfl_player : slot %>
+						<% if player %>
+							<td class="player 
+							<%= player.position.downcase %> 
+							<%= 'limited' if @limited_positions.include?(player.position) %> 
+							<%= 'keeper' if player.keeper?(@league) %> 
+							<%= 'traded' if @klass == 'draft' && slot.traded %> 
+							<%= player.picked?(@league) ? 'picked' : 'unpicked' %>" 
+							data-player="<%= player.id %>">
+								<div class="info">
+									<span class="team"><%= player.nfl_team.shortname %></span>
+									<span class="bye"><%= player.nfl_team.bye %></span>
+								</div>
+								<div class="name"><%= player.name %></div>
+							</td>
+						<% else %>
+							<td class="player unpicked <%= 'traded' if slot.traded %>"></td>
+						<% end %>
 					<% end %>
 					<% if round.count < @league.size && (@klass != 'draft' || klass == 'even') %>
 						<% if index >= @league.size %>

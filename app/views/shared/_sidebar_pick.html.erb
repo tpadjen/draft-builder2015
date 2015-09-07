@@ -12,6 +12,6 @@
 			<%= pick.nfl_player.name %>
 			<span class="owner"><%= pick.fantasy_team.owner %></span>
 		<% else %>
-			<%= pick.fantasy_team.owner %>
+			<%= pick.fantasy_team.owner %><%= '*' if pick.traded %>
 		<% end %>
 </button>

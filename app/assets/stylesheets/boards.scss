@@ -34,6 +34,22 @@
 		padding: 0;
 		vertical-align: middle !important;
 
+		&.keeper {
+			background-color: #999;
+		}
+
+		&.traded {
+			&.picked .name {
+				border: 4px solid red;
+				padding: 10px;
+				// background-color: red !important;
+			}
+
+			&.unpicked {
+				background-color: red;
+			}
+		}
+
 		&.picked {
 			.info .bye, .info .team {
 				color: #000;
@@ -52,7 +68,7 @@
 		.info {
 			position: absolute;
 			top: 0px;
-			width: 104px;
+			width: 86px;
 			z-index: 100;
 
 			.bye, .team {
@@ -90,9 +106,9 @@
 			display: table-cell;
 	    vertical-align:middle;
 	    text-align: center;
-	    min-width: 104px;
-	    width: 104px;
-	    max-width: 104px;
+	    min-width: 86px;
+	    width: 86px;
+	    max-width: 86px;
 	    overflow: hidden;
 		}
 	}

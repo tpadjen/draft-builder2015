@@ -18,12 +18,12 @@ class DraftPick < ActiveRecord::Base
   end
 
   def round
-  	r = (number / 10) + 1
-  	number % 10 == 0 ? r - 1 : r
+  	r = (number / league.size) + 1
+  	number % league.size == 0 ? r - 1 : r
   end
 
   def round_pick
-  	number % 10 == 0 ? 10 : number % 10
+  	number % league.size == 0 ? league.size : number % league.size
   end
 
   def to_d

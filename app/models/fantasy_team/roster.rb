@@ -17,7 +17,7 @@ class FantasyTeam::Roster
 
 		picks = draft_picks.includes(nfl_player: :nfl_team).order(:number)
 
-		picks.selected.each do |pick|
+		picks.selected.reorder(keeper: :desc, number: :asc).each do |pick|
 			player = pick.nfl_player
 
 			if spot = spot_for?(player, starters)

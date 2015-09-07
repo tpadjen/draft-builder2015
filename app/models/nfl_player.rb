@@ -20,6 +20,12 @@ class NflPlayer < ActiveRecord::Base
   	leagues.include?(league)
   end
 
+  def keeper?(league)
+    return false unless picked?(league)
+
+    draft_picks.where(league: league).first.keeper
+  end
+
   def fantasy_team(league)
     fantasy_teams.where(league: league).first
   end
