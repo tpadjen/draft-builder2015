@@ -4,10 +4,10 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   def skip_bullet
-    Bullet.enable = false
+    # Bullet.enable = false
     yield
   ensure
-    Bullet.enable = true
+    # Bullet.enable = true
   end
 
   def with_format(format, &block)
